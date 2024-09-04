@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Concessionaria.Application\Concessionaria.Application.csproj" />
+  </ItemGroup>
+
 </Project>
