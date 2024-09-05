@@ -11,6 +11,8 @@ namespace ConcessionariaApp.Domain.Entities
         public Email Email { get; private set; }
         public int CapacidadeMaximaVeiculos { get; private set; }
 
+        public ICollection<Venda> Vendas { get; private set; }
+
         public Concessionaria(string nome, Endereco endereco, Telefone telefone, Email email, int capacidadeMaximaVeiculos)
         {
             Nome = nome;

@@ -13,6 +13,7 @@ namespace ConcessionariaApp.Domain.Entities
         public string Descricao { get; set; }
 
         public Fabricante Fabricante { get; private set; }
+        public ICollection<Venda> Vendas { get; private set; }
 
         public Veiculo(string modelo, string anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
         {

@@ -8,7 +8,9 @@ namespace ConcessionariaApp.Domain.Entities
         public int Nome { get; private set; }
         public CPF Cpf { get; private set; }
         public Telefone Telefone { get; private set; }
-        
+
+        public ICollection<Venda> Vendas { get; private set; }
+
         public Cliente(int nome, CPF cpf, Telefone telefone)
         {
             Nome = nome;
