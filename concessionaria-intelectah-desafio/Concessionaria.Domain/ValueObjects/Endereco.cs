@@ -24,5 +24,24 @@ namespace Concessionaria.Domain.ValueObjects
             Estado = estado;
             Cep = cep;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Endereco endereco)
+                return false;
+
+            return Rua == endereco.Rua &&
+                   Numero == endereco.Numero &&
+                   Bairro == endereco.Bairro &&
+                   Cidade == endereco.Cidade &&
+                   Estado == endereco.Estado &&
+                   Cep == endereco.Cep;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Rua, Numero, Bairro, Cidade, Estado, Cep);
+        }
+
     }
 }
