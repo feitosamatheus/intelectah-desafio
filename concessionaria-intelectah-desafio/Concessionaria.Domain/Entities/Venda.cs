@@ -1,4 +1,6 @@
-﻿namespace ConcessionariaApp.Domain.Entities
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace ConcessionariaApp.Domain.Entities
 {
     public class Venda
     {    
@@ -16,6 +18,11 @@
 
         public Venda(int veiculoId, int concessionariaId, int clienteId, DateTime dataVenda, decimal precoVenda, string protocoloVenda)
         {
+            if(dataVenda > DateTime.Now)
+                throw new ArgumentOutOfRangeException(nameof(DataVenda), "A data da venda não pode ser no futuro.");
+            if(PrecoVenda < 0 )
+                throw new ArgumentOutOfRangeException(nameof(PrecoVenda), "O preço não pode ser negativo.");
+
             VeiculoId = veiculoId;
             ConcessionariaId = concessionariaId;
             ClienteId = clienteId;

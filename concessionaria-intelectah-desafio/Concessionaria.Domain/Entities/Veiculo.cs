@@ -17,6 +17,9 @@ namespace ConcessionariaApp.Domain.Entities
 
         public Veiculo(string modelo, string anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
         {
+            if(preco < 0)
+                throw new ArgumentOutOfRangeException(nameof(PrecoVenda), "O preço não pode ser negativo.");
+
             Modelo = modelo;
             AnoFabricacao = anoFabricacao;
             Preco = preco;
