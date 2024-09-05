@@ -8,5 +8,7 @@ namespace ConcessionariaApp.Domain.Interfaces.Services
 {
     public interface ICashingService
     {
+        Task AtualizarCacheAynsc(string chave, string valor);
+        Task<string> BuscarCacheAsync(string chave);
     }
 }

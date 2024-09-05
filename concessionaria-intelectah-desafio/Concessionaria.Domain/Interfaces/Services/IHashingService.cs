@@ -8,5 +8,7 @@ namespace ConcessionariaApp.Domain.Interfaces.Services
 {
     public interface IHashingService
     {
+        string GerarHash(string valor);
+        bool ValidarHash(string valorRepassado, string HashAtual);
     }
 }
