@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
+namespace ConcessionariaApp.Infrastructure.Config.FluentConfigurations
 {
     public class VeiculoConfig : IEntityTypeConfiguration<Veiculo>
     {
@@ -18,7 +18,7 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
             builder.Property(v => v.Modelo).HasMaxLength(100).IsRequired();
             builder.HasIndex(v => v.Modelo).HasDatabaseName("IX_Veiculo_Nome").IsUnique();
             builder.Property(v => v.AnoFabricacao).IsRequired();
-            builder.Property(v => v.Preco).HasPrecision(10,2).IsRequired();
+            builder.Property(v => v.Preco).HasPrecision(10, 2).IsRequired();
             builder.HasOne(f => f.Fabricante).WithMany(m => m.Veiculos).HasForeignKey(fk => fk.FabricanteId);
             builder.Property(v => v.TipoVeiculo).IsRequired();
             builder.Property(v => v.Descricao);

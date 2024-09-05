@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
+namespace ConcessionariaApp.Infrastructure.Config.FluentConfigurations
 {
     public class FabricanteConfig : IEntityTypeConfiguration<Fabricante>
     {

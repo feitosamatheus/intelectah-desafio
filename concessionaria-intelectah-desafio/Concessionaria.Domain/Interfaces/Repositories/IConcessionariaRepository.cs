@@ -1,7 +1,6 @@
 ﻿using ConcessionariaApp.Domain.Entities;
-using ConcessionariaApp.Domain.Interfaces;
 
-namespace ConcessionariaAppApp.Domain.Interfaces
+namespace ConcessionariaApp.Domain.Interfaces.Repositories
 {
     public interface IConcessionariaRepository : IBaseRepository<Concessionaria>
     {
