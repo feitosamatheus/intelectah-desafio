@@ -3,7 +3,7 @@ using ConcessionariaApp.Domain.Interfaces;
 
 namespace ConcessionariaAppApp.Domain.Interfaces
 {
-    public interface IConcessionariaAppRepository : IBaseRepository<Concessionaria>
+    public interface IConcessionariaRepository : IBaseRepository<Concessionaria>
     {
     }
 }
