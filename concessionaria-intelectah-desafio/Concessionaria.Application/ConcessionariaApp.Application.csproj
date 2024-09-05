@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Concessionaria.Application\Concessionaria.Application.csproj" />
+    <ProjectReference Include="..\Concessionaria.Domain\ConcessionariaApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
