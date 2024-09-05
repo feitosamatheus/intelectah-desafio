@@ -1,4 +1,5 @@
 ﻿using ConcessionariaApp.Domain.Entities;
+using ConcessionariaApp.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -14,6 +15,8 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
         public void Configure(EntityTypeBuilder<Concessionaria> builder)
         {
             builder.HasKey(c => c.ConcessionariaId);
+            builder.Property(c => c.Nome).HasMaxLength(100).IsRequired(); 
+            builder.HasIndex(c => c.Nome).HasDatabaseName("IX_Concessionaria_Nome").IsUnique();
             builder.OwnsOne(c => c.Endereco, endereco =>
             {
                 endereco.Property(e => e.EnderecoFormatado).HasColumnName("Endereco").HasMaxLength(255).IsRequired();
