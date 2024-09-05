@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Concessionaria.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -17,7 +18,7 @@ namespace Concessionaria.Domain.ValueObjects
         public Telefone(string numero)
         {
             if (ValidarTelefone(numero))
-                throw new ArgumentNullException("Número não informado.");
+                throw new TelefoneInvalidoException("Número não informado.");
             Numero = numero;
         }
 

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Concessionaria.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Concessionaria.Domain.ValueObjects
 {
@@ -13,12 +15,9 @@ namespace Concessionaria.Domain.ValueObjects
 
         public CPF(string numero)
         {
-            if (string.IsNullOrWhiteSpace(numero))
-                throw new ArgumentException("Cpf não informado.");
-
-
             if (ValidarCpf(numero))
-                throw new ArgumentException("O Cpf informado é inválido.");
+                throw new CpfInvalidoException();
+
             Numero = numero;
         }
 
@@ -33,12 +32,13 @@ namespace Concessionaria.Domain.ValueObjects
         public override int GetHashCode()
         {
             return HashCode.Combine(Numero);
-
         }
 
         public bool ValidarCpf(string cpf)
         {
-            
+            if (string.IsNullOrWhiteSpace(cpf))
+                return false;
+
             cpf = Regex.Replace(cpf, @"\D", "");
 
             if (cpf.Length != 11)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Concessionaria.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -13,8 +14,8 @@ namespace Concessionaria.Domain.ValueObjects
 
         public Email(string enderecoEmail)
         {
-            if (string.IsNullOrEmpty(enderecoEmail) || ValidarEmail(enderecoEmail))
-                throw new ArgumentNullException();
+            if (ValidarEmail(enderecoEmail))
+                throw new EmailInvalidoException();
 
             EnderecoEmail = enderecoEmail;
         }
@@ -34,6 +35,9 @@ namespace Concessionaria.Domain.ValueObjects
 
         private bool ValidarEmail(string endereco)
         {
+            if(string.IsNullOrEmpty(endereco))
+                return false;
+
             try
             {
                 var addr = new MailAddress(endereco);

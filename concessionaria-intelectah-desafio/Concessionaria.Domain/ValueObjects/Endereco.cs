@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Concessionaria.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace Concessionaria.Domain.ValueObjects
 
         public Endereco(string rua, string numero, string bairro, string cidade, string estado, string cep)
         {
+            if (ValidarEmail())
+                throw new EnderecoInvalidoException();
+
             Rua = rua;
             Numero = numero;
             Bairro = bairro;
@@ -43,5 +47,14 @@ namespace Concessionaria.Domain.ValueObjects
             return HashCode.Combine(Rua, Numero, Bairro, Cidade, Estado, Cep);
         }
 
+        public bool ValidarEmail()
+        {
+             return string.IsNullOrEmpty(Rua) &&
+                   string.IsNullOrEmpty(Numero) ||
+                   string.IsNullOrEmpty(Bairro) ||
+                   string.IsNullOrEmpty(Cidade) ||
+                   string.IsNullOrEmpty(Estado) ||
+                   string.IsNullOrEmpty(Cep);
+        }
     }
 }
