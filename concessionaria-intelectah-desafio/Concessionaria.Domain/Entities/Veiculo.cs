@@ -1,11 +1,6 @@
-﻿using Concessionaria.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConcessionariaApp.Domain.Enums;
 
-namespace Concessionaria.Domain.Entities
+namespace ConcessionariaApp.Domain.Entities
 {
     public class Veiculo
     {

@@ -1,11 +1,6 @@
-﻿using Concessionaria.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConcessionariaApp.Domain.Entities;
 
-namespace Concessionaria.Domain.Interfaces
+namespace ConcessionariaApp.Domain.Interfaces
 {
     public interface IUsuarioRepository : IBaseRepository<Usuario>
     {

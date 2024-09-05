@@ -1,15 +1,7 @@
-﻿using Concessionaria.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Cryptography;
-using System.Text;
+﻿using ConcessionariaApp.Domain.Exceptions;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Concessionaria.Domain.ValueObjects
+namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class Telefone
     {

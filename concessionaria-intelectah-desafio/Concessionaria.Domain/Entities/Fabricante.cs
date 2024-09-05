@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Concessionaria.Domain.Entities
+﻿
+namespace ConcessionariaApp.Domain.Entities
 {
     public class Fabricante
     {

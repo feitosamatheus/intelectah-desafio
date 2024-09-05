@@ -1,12 +1,7 @@
-﻿using Concessionaria.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ConcessionariaApp.Domain.Exceptions;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Concessionaria.Domain.ValueObjects
+namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class Email
     {

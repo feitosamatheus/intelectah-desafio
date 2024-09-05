@@ -1,11 +1,6 @@
-﻿using Concessionaria.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConcessionariaApp.Domain.Exceptions;
 
-namespace Concessionaria.Domain.ValueObjects
+namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class Endereco
     {

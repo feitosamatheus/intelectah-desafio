@@ -1,15 +1,10 @@
-﻿using Concessionaria.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConcessionariaApp.Domain.ValueObjects;
 
-namespace Concessionaria.Domain.Entities
+namespace ConcessionariaApp.Domain.Entities
 {
     public class Concessionaria
     {
-        public int ConcessionariaId { get; private set; }
+        public int ConcessionariaAppId { get; private set; }
         public string Nome { get; private set; }
         public Endereco Endereco { get; private set; }  
         public Telefone Telefone { get; private set; }
