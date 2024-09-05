@@ -6,7 +6,7 @@ namespace ConcessionariaApp.Domain.Entities
     {
         public int VeiculoId { get; private set; }
         public string Modelo { get; private set; }
-        public string AnoFabricacao { get; private set; }
+        public int AnoFabricacao { get; private set; }
         public decimal Preco { get; private set; }
         public int FabricanteId { get; private set; }
         public ETipoVeiculo TipoVeiculo { get; private set; }
@@ -15,7 +15,7 @@ namespace ConcessionariaApp.Domain.Entities
         public Fabricante Fabricante { get; private set; }
         public ICollection<Venda> Vendas { get; private set; }
 
-        public Veiculo(string modelo, string anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
+        public Veiculo(string modelo, int anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
         {
             if(preco < 0)
                 throw new ArgumentOutOfRangeException(nameof(Preco), "O preço não pode ser negativo.");

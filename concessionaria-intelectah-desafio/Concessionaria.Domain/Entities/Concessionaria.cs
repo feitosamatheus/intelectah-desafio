@@ -4,7 +4,7 @@ namespace ConcessionariaApp.Domain.Entities
 {
     public class Concessionaria
     {
-        public int ConcessionariaAppId { get; private set; }
+        public int ConcessionariaId { get; private set; }
         public string Nome { get; private set; }
         public Endereco Endereco { get; private set; }  
         public Telefone Telefone { get; private set; }
