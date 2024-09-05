@@ -5,14 +5,14 @@ namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class CPF
     {
-        public string Numero { get; set; }
+        public string Numero { get; }
 
         public CPF(string numero)
         {
             if (ValidarCpf(numero))
                 throw new CpfInvalidoException();
-
-            Numero = numero;
+            
+            Numero = RemoverMascara(numero);
         }
 
         public override bool Equals(object obj)
@@ -75,5 +75,11 @@ namespace ConcessionariaApp.Domain.ValueObjects
             return cpf.EndsWith(digito);
         }
 
+        public string RemoverMascara(string cpf)
+        {
+            var cpfSemMascara = Regex.Replace(cpf, @"\D", "");
+
+            return cpfSemMascara;
+        }
     }
 }

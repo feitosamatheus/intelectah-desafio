@@ -36,25 +36,5 @@ namespace ConcessionariaApp.Domain.ValueObjects
 
             return tel.Length == 10 || tel.Length == 11;
         }
-
-        public string Mascara()
-        {
-            if (Numero.Length == 10)
-            {
-                return string.Format("({0}) {1}-{2}",
-                    Numero.Substring(0, 2), 
-                    Numero.Substring(2, 4), 
-                    Numero.Substring(6, 4));
-            }
-            else if (Numero.Length == 11)
-            {
-                return string.Format("({0}) {1}-{2}",
-                    Numero.Substring(0, 2),
-                    Numero.Substring(2, 5),
-                    Numero.Substring(7, 4));
-            }
-
-            return Numero;
-        }
     }
 }

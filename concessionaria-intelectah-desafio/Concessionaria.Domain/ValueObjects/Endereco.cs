@@ -10,11 +10,14 @@ namespace ConcessionariaApp.Domain.ValueObjects
         public string Cidade { get; }
         public string Estado { get; }
         public string Cep { get; }
+        public string EnderecoFormatado { get; private set; }
 
         public Endereco(string rua, string numero, string bairro, string cidade, string estado, string cep)
         {
-            if (ValidarEmail())
+            if (ValidarEndereco())
                 throw new EnderecoInvalidoException();
+
+            FormatarEndereco();
 
             Rua = rua;
             Numero = numero;
@@ -28,7 +31,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
         {
             if (obj is not Endereco endereco)
                 return false;
-
+            
             return Rua == endereco.Rua &&
                    Numero == endereco.Numero &&
                    Bairro == endereco.Bairro &&
@@ -42,7 +45,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
             return HashCode.Combine(Rua, Numero, Bairro, Cidade, Estado, Cep);
         }
 
-        public bool ValidarEmail()
+        public bool ValidarEndereco()
         {
              return string.IsNullOrEmpty(Rua) &&
                    string.IsNullOrEmpty(Numero) ||
@@ -50,6 +53,11 @@ namespace ConcessionariaApp.Domain.ValueObjects
                    string.IsNullOrEmpty(Cidade) ||
                    string.IsNullOrEmpty(Estado) ||
                    string.IsNullOrEmpty(Cep);
+        }
+
+        public void FormatarEndereco()
+        {
+            EnderecoFormatado = string.Format("{0}, {1}, {2}", Rua, Numero, Bairro);
         }
     }
 }
