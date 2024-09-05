@@ -1,11 +1,13 @@
-﻿namespace ConcessionariaApp.Domain.Interfaces
+﻿using ConcessionariaApp.Domain.Common;
+
+namespace ConcessionariaApp.Domain.Interfaces
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         void Add(T value);
         void Delete(T value);
         void Update(T value);
-        Task<T> GetAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetAsync(int id, CancellationToken cancellationToken);
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

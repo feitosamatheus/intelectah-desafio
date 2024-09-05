@@ -1,10 +1,10 @@
-﻿using ConcessionariaApp.Domain.Enums;
+﻿using ConcessionariaApp.Domain.Common;
+using ConcessionariaApp.Domain.Enums;
 
 namespace ConcessionariaApp.Domain.Entities
 {
-    public class Veiculo
+    public class Veiculo : BaseEntity
     {
-        public int VeiculoId { get; private set; }
         public string Modelo { get; private set; }
         public int AnoFabricacao { get; private set; }
         public decimal Preco { get; private set; }

@@ -1,10 +1,10 @@
-﻿using ConcessionariaApp.Domain.ValueObjects;
+﻿using ConcessionariaApp.Domain.Common;
+using ConcessionariaApp.Domain.ValueObjects;
 
 namespace ConcessionariaApp.Domain.Entities
 {
-    public class Cliente
+    public class Cliente : BaseEntity
     {
-        public int ClienteId { get; private set; }
         public int Nome { get; private set; }
         public CPF Cpf { get; private set; }
         public Telefone Telefone { get; private set; }

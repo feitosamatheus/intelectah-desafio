@@ -1,10 +1,10 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using ConcessionariaApp.Domain.Common;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConcessionariaApp.Domain.Entities
 {
-    public class Venda
+    public class Venda : BaseEntity
     {    
-        public int VendaId { get; private set; }
         public int VeiculoId { get; private set; }
         public int ConcessionariaId { get; private set; }
         public int ClienteId { get; private set; }

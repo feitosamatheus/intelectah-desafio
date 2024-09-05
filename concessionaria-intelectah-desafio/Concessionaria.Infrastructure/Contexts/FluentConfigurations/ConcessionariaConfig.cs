@@ -14,7 +14,7 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
     {
         public void Configure(EntityTypeBuilder<Concessionaria> builder)
         {
-            builder.HasKey(c => c.ConcessionariaId);
+            builder.HasKey(c => c.Id).HasName("ConcessionariaId");
             builder.Property(c => c.Nome).HasMaxLength(100).IsRequired(); 
             builder.HasIndex(c => c.Nome).HasDatabaseName("IX_Concessionaria_Nome").IsUnique();
             builder.OwnsOne(c => c.Endereco, endereco =>

@@ -13,7 +13,7 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
-            builder.HasKey(c => c.ClienteId);
+            builder.HasKey(c => c.Id).HasName("ClienteId");
             builder.Property(c => c.Nome).HasMaxLength(100).IsRequired();
             builder.OwnsOne(c => c.Cpf, cpf =>
             {

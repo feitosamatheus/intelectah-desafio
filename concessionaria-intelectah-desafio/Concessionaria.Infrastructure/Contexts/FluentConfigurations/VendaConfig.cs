@@ -13,7 +13,7 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
     {
         public void Configure(EntityTypeBuilder<Venda> builder)
         {
-            builder.HasKey(v => v.VendaId);
+            builder.HasKey(v => v.Id).HasName("VendaId");
             builder.HasOne(v => v.Veiculo).WithMany(ve => ve.Vendas).HasForeignKey(v => v.VeiculoId);
             builder.HasOne(v => v.Concessionaria).WithMany(c => c.Vendas).HasForeignKey(v => v.ConcessionariaId);
             builder.HasOne(v => v.Cliente).WithMany(cl => cl.Vendas).HasForeignKey(v => v.ClienteId);

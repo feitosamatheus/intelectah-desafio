@@ -1,11 +1,11 @@
-﻿using ConcessionariaApp.Domain.Enums;
+﻿using ConcessionariaApp.Domain.Common;
+using ConcessionariaApp.Domain.Enums;
 using ConcessionariaApp.Domain.ValueObjects;
 
 namespace ConcessionariaApp.Domain.Entities
 {
-    public class Usuario
+    public class Usuario : BaseEntity
     {
-        public int UsuarioId { get; private set; }
         public string NomeUsuario { get; private set; }
         public string Senha { get; private set; }
         public Email Email { get; private set; }

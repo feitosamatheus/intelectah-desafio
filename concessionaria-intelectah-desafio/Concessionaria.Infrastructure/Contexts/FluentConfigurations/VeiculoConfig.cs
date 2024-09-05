@@ -14,7 +14,7 @@ namespace ConcessionariaApp.Infrastructure.Contexts.FluentConfigurations
     {
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
-            builder.HasKey(v => v.VeiculoId);
+            builder.HasKey(v => v.Id).HasName("VeiculoId");
             builder.Property(v => v.Modelo).HasMaxLength(100).IsRequired();
             builder.HasIndex(v => v.Modelo).HasDatabaseName("IX_Veiculo_Nome").IsUnique();
             builder.Property(v => v.AnoFabricacao).IsRequired();

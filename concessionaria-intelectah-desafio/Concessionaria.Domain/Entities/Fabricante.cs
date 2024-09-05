@@ -1,10 +1,11 @@
 ﻿
+using ConcessionariaApp.Domain.Common;
+
 namespace ConcessionariaApp.Domain.Entities
 {
-    public class Fabricante
+    public class Fabricante : BaseEntity
     {
-        public int FabricanteId { get; private set;}
-        public string Nome { get; private set; } // deve ser único
+        public string Nome { get; private set; }
         public string PaisOrigem { get; private set; }
         public int AnoFundacao { get; private  set; }
         public string WebSite { get; private set; }
