@@ -1,12 +1,11 @@
-﻿using ConcessionariaApp.Infrastructure.Contexts;
+﻿using ConcessionariaApp.Domain.Entities;
+using ConcessionariaApp.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using ConcessionariaApp.Infrastructure.Autentications;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ConcessionariaApp.Infrastructure.Config
 {
@@ -26,6 +25,24 @@ namespace ConcessionariaApp.Infrastructure.Config
             {
                 options.Configuration = configuration.GetConnectionString("RedisConnection");
                 options.InstanceName = "ConcessionariaApp";
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddIdentity<Usuario, IdentityRole>()
+            .AddUserStore<UsuarioStoreCustom>()
+            .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
             });
 
             return services;

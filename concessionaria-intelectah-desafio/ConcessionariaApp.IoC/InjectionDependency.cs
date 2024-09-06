@@ -21,6 +21,7 @@ namespace ConcessionariaApp.IoC
         {
             services.AddRedisConfiguration(configuration);
             services.AddDatabaseConfiguration(configuration);
+            services.AddIdentityConfiguration(configuration);
 
             return services;
         }
@@ -36,6 +37,7 @@ namespace ConcessionariaApp.IoC
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<ICashingService, CashingService>();
 

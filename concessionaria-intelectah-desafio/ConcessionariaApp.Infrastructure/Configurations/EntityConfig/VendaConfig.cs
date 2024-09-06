@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Infrastructure.FluentConfigurations
+namespace ConcessionariaApp.Infrastructure.Configurations.EntityConfig
 {
     public class VendaConfig : IEntityTypeConfiguration<Venda>
     {
