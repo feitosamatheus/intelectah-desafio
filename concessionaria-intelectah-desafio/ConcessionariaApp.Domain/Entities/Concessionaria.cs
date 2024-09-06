@@ -13,6 +13,7 @@ namespace ConcessionariaApp.Domain.Entities
 
         public ICollection<Venda> Vendas { get; private set; }
 
+        public Concessionaria(){ }
         public Concessionaria(string nome, Endereco endereco, Telefone telefone, Email email, int capacidadeMaximaVeiculos)
         {
             Nome = nome;

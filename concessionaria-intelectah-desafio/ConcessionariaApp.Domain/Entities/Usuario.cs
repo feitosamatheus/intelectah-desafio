@@ -10,7 +10,8 @@ namespace ConcessionariaApp.Domain.Entities
         public string Senha { get; private set; }
         public Email Email { get; private set; }
         public ENivelAcesso NivelAcesso { get; private set; }
-        
+
+        public Usuario(){ }
         public Usuario(string nomeUsuario, string senha, Email email, ENivelAcesso nivelAcesso)
         {
             NomeUsuario = nomeUsuario;

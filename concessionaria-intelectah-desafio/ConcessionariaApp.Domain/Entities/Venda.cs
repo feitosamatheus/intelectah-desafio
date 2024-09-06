@@ -16,6 +16,7 @@ namespace ConcessionariaApp.Domain.Entities
         public Concessionaria Concessionaria { get; private set; }
         public Cliente Cliente { get; private set; }
 
+        public Venda(){}
         public Venda(int veiculoId, int concessionariaId, int clienteId, DateTime dataVenda, decimal precoVenda, string protocoloVenda)
         {
             if(dataVenda > DateTime.Now)

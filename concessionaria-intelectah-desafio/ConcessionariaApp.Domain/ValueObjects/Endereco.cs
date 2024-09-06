@@ -12,6 +12,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
         public string Cep { get; }
         public string EnderecoFormatado { get; private set; }
 
+        public Endereco() { }
         public Endereco(string rua, string numero, string bairro, string cidade, string estado, string cep)
         {
             if (ValidarEndereco())

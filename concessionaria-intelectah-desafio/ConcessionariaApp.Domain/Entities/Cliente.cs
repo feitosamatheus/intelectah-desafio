@@ -11,6 +11,7 @@ namespace ConcessionariaApp.Domain.Entities
 
         public ICollection<Venda> Vendas { get; private set; }
 
+        public Cliente(){ }
         public Cliente(int nome, CPF cpf, Telefone telefone)
         {
             Nome = nome;

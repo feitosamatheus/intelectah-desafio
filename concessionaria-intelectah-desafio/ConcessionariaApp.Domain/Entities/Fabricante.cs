@@ -12,6 +12,7 @@ namespace ConcessionariaApp.Domain.Entities
         
         public ICollection<Veiculo> Veiculos { get; private set; }
 
+        public Fabricante() { }
         public Fabricante(string nome, int anoFundacao, string webSite, string paisOrigem)
         {
             Nome = nome;

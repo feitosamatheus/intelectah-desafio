@@ -15,6 +15,7 @@ namespace ConcessionariaApp.Domain.Entities
         public Fabricante Fabricante { get; private set; }
         public ICollection<Venda> Vendas { get; private set; }
 
+        public Veiculo(){ }
         public Veiculo(string modelo, int anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
         {
             if(preco < 0)
