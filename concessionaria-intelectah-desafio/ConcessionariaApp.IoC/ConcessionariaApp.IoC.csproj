@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Concessionaria.Application\ConcessionariaApp.Application.csproj" />
-    <ProjectReference Include="..\Concessionaria.Infrastructure\ConcessionariaApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\ConcessionariaApp.Application\ConcessionariaApp.Application.csproj" />
+    <ProjectReference Include="..\ConcessionariaApp.Infrastructure\ConcessionariaApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
