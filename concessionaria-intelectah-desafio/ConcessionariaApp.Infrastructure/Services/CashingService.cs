@@ -1,4 +1,4 @@
-﻿using ConcessionariaApp.Domain.Interfaces.Services;
+﻿using ConcessionariaApp.Application.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;

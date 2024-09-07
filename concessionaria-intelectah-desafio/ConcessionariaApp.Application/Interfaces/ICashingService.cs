@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Domain.Interfaces.Services
+namespace ConcessionariaApp.Application.Interfaces
 {
     public interface ICashingService
     {

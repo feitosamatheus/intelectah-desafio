@@ -1,6 +1,6 @@
-﻿using ConcessionariaApp.Domain.Common;
+﻿using ConcessionariaApp.Application.Interfaces;
+using ConcessionariaApp.Domain.Common;
 using ConcessionariaApp.Domain.Entities;
-using ConcessionariaApp.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

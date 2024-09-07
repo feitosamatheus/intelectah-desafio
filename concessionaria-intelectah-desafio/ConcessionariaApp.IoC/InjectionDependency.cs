@@ -1,10 +1,10 @@
 ﻿using ConcessionariaApp.Domain.Interfaces;
 using ConcessionariaApp.Domain.Interfaces.Repositories;
-using ConcessionariaApp.Domain.Interfaces.Services;
 using ConcessionariaApp.Infrastructure.Config;
 using ConcessionariaApp.Infrastructure.Repositories;
 using ConcessionariaApp.Infrastructure.Services;
 using ConcessionariaApp.Infrastructure.UnitOfWork;
+using ConcessionariaApp.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

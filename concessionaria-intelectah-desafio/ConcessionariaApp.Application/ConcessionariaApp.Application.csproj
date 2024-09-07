@@ -10,4 +10,16 @@
     <ProjectReference Include="..\ConcessionariaApp.Domain\ConcessionariaApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Services\" />
+    <Folder Include="UseCases\Authentication\Command\CriarUsuario\" />
+    <Folder Include="UseCases\Authentication\Command\AutenticarUsuario\" />
+    <Folder Include="UseCases\Authentication\Query\BuscaRoleUsuario\" />
+    <Folder Include="UseCases\Concessionaria\Command\" />
+    <Folder Include="UseCases\Concessionaria\Query\" />
+    <Folder Include="UseCases\Fabricante\Command\AdicionarFabricante\" />
+    <Folder Include="UseCases\Fabricante\Query\BuscarFabricante\" />
+  </ItemGroup>
+
 </Project>
