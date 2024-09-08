@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConcessionariaApp.Application.Services;
+using ConcessionariaApp.Application.Mapping;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ConcessionariaApp.IoC
 {
@@ -37,12 +40,21 @@ namespace ConcessionariaApp.IoC
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<ILoginService, LoginService>();
+
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<ICashingService, CashingService>();
 
+            services.AddAutoMapper(typeof(DtoForEntityMapping));
+            services.AddAutoMapper(typeof(EntityForDtoMapping));
+            services.AddAutoMapper(typeof(DtoForCommandMapping));
+            services.AddAutoMapper(typeof(CommandForDtoMapping));
+            
+            var assembly = AppDomain.CurrentDomain.Load("ConcessionariaApp.Application");
+            services.AddMediatR(config => config.RegisterServicesFromAssembly(assembly));
+
             return services;
         }
-
     }
 }

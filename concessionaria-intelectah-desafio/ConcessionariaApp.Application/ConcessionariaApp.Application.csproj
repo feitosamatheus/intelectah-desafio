@@ -11,15 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Services\" />
-    <Folder Include="UseCases\Authentication\Command\CriarUsuario\" />
-    <Folder Include="UseCases\Authentication\Command\AutenticarUsuario\" />
-    <Folder Include="UseCases\Authentication\Query\BuscaRoleUsuario\" />
-    <Folder Include="UseCases\Concessionaria\Command\" />
-    <Folder Include="UseCases\Concessionaria\Query\" />
-    <Folder Include="UseCases\Fabricante\Command\AdicionarFabricante\" />
-    <Folder Include="UseCases\Fabricante\Query\BuscarFabricante\" />
+    <Folder Include="UseCases\Login\Query\BuscaRoleUsuario\" />
+    <Folder Include="UseCases\Concessionarias\Commands\" />
+    <Folder Include="UseCases\Concessionarias\Querys\" />
+    <Folder Include="UseCases\Fabricantes\Commands\AdicionarFabricante\" />
+    <Folder Include="UseCases\Fabricantes\Querys\BuscarFabricante\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
   </ItemGroup>
 
 </Project>

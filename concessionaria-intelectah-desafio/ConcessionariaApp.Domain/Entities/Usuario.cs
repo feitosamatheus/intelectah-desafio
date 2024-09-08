@@ -11,13 +11,28 @@ namespace ConcessionariaApp.Domain.Entities
         public Email Email { get; private set; }
         public ENivelAcesso NivelAcesso { get; private set; }
 
-        public Usuario(){ }
-        public Usuario(string nomeUsuario, string senha, Email email, ENivelAcesso nivelAcesso)
+        public Usuario() { }
+        private Usuario(string nomeUsuario, string senha, Email email, ENivelAcesso nivelAcesso)
         {
             NomeUsuario = nomeUsuario;
             Senha = senha;
             Email = email;
             NivelAcesso = nivelAcesso;
         }
+
+        public static Usuario Criar(string nomeUsuario,string sobrenome, string senha, string emailEndereco, ENivelAcesso nivelAcesso)
+        {
+            if (string.IsNullOrWhiteSpace(nomeUsuario))
+                throw new ArgumentException("Nome de usuário não pode ser vazio.");
+            if (string.IsNullOrWhiteSpace(senha))
+                throw new ArgumentException("Senha não pode ser vazia.");
+            if (string.IsNullOrWhiteSpace(emailEndereco))
+                throw new ArgumentException("O endereço de email não pode ser vazio.");
+
+            var email = new Email(emailEndereco); 
+
+            return new Usuario(nomeUsuario, senha, email,nivelAcesso);
+        }
+
     }
 }
