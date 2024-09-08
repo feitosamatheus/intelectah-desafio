@@ -15,6 +15,12 @@ namespace ConcessionariaApp.Infrastructure.Services
         private readonly SignInManager<Usuario> _signInManager;
         private readonly UserManager<Usuario> _userManager;
 
+        public AuthenticationService(SignInManager<Usuario> signInManager, UserManager<Usuario> userManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
+
         public async Task<ResultadoOperacao> CriarUsuarioAsync(Usuario usuario)
         {
            var resultado = await _userManager.CreateAsync(usuario);
@@ -30,7 +36,7 @@ namespace ConcessionariaApp.Infrastructure.Services
             if (resultado.Succeeded)
                 return ResultadoOperacao.OK();
 
-            return ResultadoOperacao.Falha();
+            return ResultadoOperacao.Falha("Usuário e/ou senha inválido.");
         }
 
         public async Task LogoutUsuarioAsync()
@@ -40,7 +46,7 @@ namespace ConcessionariaApp.Infrastructure.Services
 
         public async Task<Usuario> BuscarUsuarioPorEmailAsync(string email)
         {
-            return await _userManager.FindByEmailAsync(email);
+            return await _userManager.FindByNameAsync(email);
         }
 
     }

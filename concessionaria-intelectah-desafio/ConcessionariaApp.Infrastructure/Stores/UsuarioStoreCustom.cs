@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcessionariaApp.Infrastructure.Autentications
 {
-    public class UsuarioStoreCustom : IUserStore<Usuario>, IUserPasswordStore<Usuario>
+    public class UsuarioStoreCustom : IUserStore<Usuario>, IUserPasswordStore<Usuario>, IUserRoleStore<Usuario>, IUserEmailStore<Usuario>
     {
         private readonly ContextApp _context;
 
@@ -76,16 +76,16 @@ namespace ConcessionariaApp.Infrastructure.Autentications
 
         public Task SetNormalizedUserNameAsync(Usuario user, string normalizedName, CancellationToken cancellationToken)
         {
-            var novoUser = new Usuario(normalizedName, user.Senha, user.Email, user.NivelAcesso);
-            _context.Usuarios.Add(novoUser);
+            //var novoUser = Usuario.Criar(normalizedName, user.Senha, user.Email.EnderecoEmail, user.NivelAcesso);
+            //_context.Usuarios.Add(novoUser);
 
             return Task.FromResult(IdentityResult.Success);
         }
 
         public Task SetPasswordHashAsync(Usuario user, string passwordHash, CancellationToken cancellationToken)
         {
-            var novoUser = new Usuario(user.NomeUsuario, passwordHash, user.Email, user.NivelAcesso);
-            _context.Usuarios.Add(novoUser);
+            //var novoUser = new Usuario(user.NomeUsuario, passwordHash, user.Email, user.NivelAcesso);
+            //_context.Usuarios.Add(novoUser);
 
             return Task.FromResult(IdentityResult.Success);
 
@@ -93,8 +93,8 @@ namespace ConcessionariaApp.Infrastructure.Autentications
 
         public Task SetUserNameAsync(Usuario user, string userName, CancellationToken cancellationToken)
         {
-            var novoUser = new Usuario(userName, user.Senha, user.Email, user.NivelAcesso);
-            _context.Usuarios.Add(novoUser);
+            //var novoUser = new Usuario(userName, user.Senha, user.Email, user.NivelAcesso);
+            //_context.Usuarios.Add(novoUser);
 
             return Task.FromResult(IdentityResult.Success);
         }
@@ -102,6 +102,66 @@ namespace ConcessionariaApp.Infrastructure.Autentications
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public Task AddToRoleAsync(Usuario user, string roleName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveFromRoleAsync(Usuario user, string roleName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<string>> GetRolesAsync(Usuario user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> IsInRoleAsync(Usuario user, string roleName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Usuario>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailAsync(Usuario user, string email, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetEmailAsync(Usuario user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(Usuario user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailConfirmedAsync(Usuario user, bool confirmed, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Usuario> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+        {
+            return await _context.Usuarios.SingleOrDefaultAsync(u => u.Email.Equals(normalizedEmail));
+        }
+
+        public Task<string> GetNormalizedEmailAsync(Usuario user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetNormalizedEmailAsync(Usuario user, string normalizedEmail, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

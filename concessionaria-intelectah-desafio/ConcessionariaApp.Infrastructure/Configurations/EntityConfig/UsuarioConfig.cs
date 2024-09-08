@@ -20,7 +20,7 @@ namespace ConcessionariaApp.Infrastructure.Configurations.EntityConfig
             {
                 email.Property(t => t.EnderecoEmail).HasColumnName("Email").HasMaxLength(100).IsRequired();
             });
-            builder.Property(p => p.NivelAcesso).IsRequired();
+            builder.Property(p => p.NivelAcesso).HasConversion<int>().IsRequired();
         }
     }
 }

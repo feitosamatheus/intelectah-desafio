@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using ConcessionariaApp.Infrastructure.Autentications;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ConcessionariaApp.Infrastructure.Stores;
 
 namespace ConcessionariaApp.Infrastructure.Config
 {
@@ -35,7 +36,7 @@ namespace ConcessionariaApp.Infrastructure.Config
             services.AddIdentity<Usuario, IdentityRole>()
             .AddUserStore<UsuarioStoreCustom>()
             .AddDefaultTokenProviders();
-
+            services.AddScoped<UserManager<Usuario>>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -45,6 +46,7 @@ namespace ConcessionariaApp.Infrastructure.Config
                 options.Password.RequireLowercase = false;
             });
 
+            services.AddScoped<IRoleStore<IdentityRole>, RoleStoreCustom>();
             return services;
         }
     }
