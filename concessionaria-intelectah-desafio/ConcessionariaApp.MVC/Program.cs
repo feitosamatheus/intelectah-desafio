@@ -1,20 +1,21 @@
+using ConcessionariaApp.Application.Mapping;
 using ConcessionariaApp.Domain.Entities;
 using ConcessionariaApp.Infrastructure.Autentications;
 using ConcessionariaApp.IoC;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
 
-builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddInfrastructure(builder.Configuration);
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
