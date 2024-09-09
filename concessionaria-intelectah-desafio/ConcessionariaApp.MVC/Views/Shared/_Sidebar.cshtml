@@ -1,0 +1,61 @@
+﻿<link rel="stylesheet" href="~/css/layout/sidebar.css">
+
+<aside class="cont-sidebar">
+    <nav class="nav-sidebar">
+        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
+            <span class="span-col-sidebar">
+                <i class="fa-solid fa-chart-simple icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Dashboard</span>
+            </span>
+        </a>
+        <div>
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#fabricantesSubMenu" role="button" aria-expanded="false" aria-controls="fabricantesSubMenu" title="Fabricantes">
+                <span class="span-col-sidebar">
+                    <i class="fa-solid fa-industry icon-col-sidebar"></i>
+                    <span class="desc-col-sidebar">Fabricantes</span>
+                </span>
+            </a>
+            <div class="collapse" id="fabricantesSubMenu">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Adicionar" title="Adicionar Fabricante">
+                            <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Adicionar Fabricante</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Listar" title="Listar Fabricante">
+                            <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Listar Fabricante</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
+            <span class="span-col-sidebar">
+                <i class="fa-solid fa-car icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Veículos</span>
+            </span>
+        </a>
+        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="Login">
+            <span class="span-col-sidebar">
+                <i class="fa-solid fa-store icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Concessionárias</span>
+            </span>
+        </a>
+        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="Registrar">
+            <span class="span-col-sidebar">
+                <i class="fa-solid fa-money-check-dollar icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Vendas</span>
+            </span>
+        </a>
+        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
+            <span class="span-col-sidebar">
+                <i class="fa-solid fa-database icon-col-sidebar"></i>
+                <span class="desc-col-sidebar">Relatorios</span>
+            </span>
+        </a>
+    </nav>
+    
+</aside>

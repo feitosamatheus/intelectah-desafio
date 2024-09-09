@@ -1,0 +1,116 @@
+﻿.cont-sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 47px;
+    width: 49px;
+    height: 100%;
+    padding: 0px 5px 15px 5px;
+    border-right: 1px solid #2f333612;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    transition: all 0.35s;
+    color: #3d4b52;
+    background: white;
+}
+
+.nav-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: padding 0.4s;
+    padding-top: 10px;
+    border-bottom: 1px solid #00000021;
+}
+
+.col-sidebar {
+    height: 50px;
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    padding: 0;
+}
+
+.span-col-sidebar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    border-radius: 100%;
+    width: 100%;
+    transition: all 0.04s;
+}
+
+    .span-col-sidebar:hover {
+        background: rgba(0, 0, 0, 0.075);
+    }
+
+.icon-col-sidebar {
+    position: relative;
+    font-size: 16px;
+    transition: 0.2s;
+    padding: 11px;
+}
+
+.desc-col-sidebar {
+    opacity: 0;
+    visibility: hidden;
+    color: #000;
+    transition: all 0.04s;
+}
+
+.dropdowColapseCustom {
+    align-items: center !important;
+    display: flex !important;
+    padding: 4px !important;
+    font-size: 14px !important;
+    margin-top: -10px !important;
+}
+
+.descDropdowColapseCustom {
+    opacity: 0;
+    visibility: hidden;
+    color: #000;
+    transition: all 0.04s;
+    font-size: 14px !important;
+}
+
+.iconDropdown {
+    font-size: 14px !important;
+    color: #6c757d !important;
+}
+
+.dropdown-item:hover {
+    color: #1e2125cc !important;
+    background-color: transparent !important;
+}
+
+.open-cont-sidebar {
+    width: 180px !important;
+}
+
+.open-desc-col-sidebar {
+    opacity: 1;
+    visibility: visible;
+    font-size: 15px;
+}
+
+.open-icon-col-sidebar {
+    border-radius: 7px;
+}
+
+@media (width < 680px) {
+    .cont-sidebar {
+        display: none !important;
+    }
+
+    .open-desc-col-sidebar {
+        opacity: 1;
+        visibility: visible;
+        font-size: 15px;
+    }
+}

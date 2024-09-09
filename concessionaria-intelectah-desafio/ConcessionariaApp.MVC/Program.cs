@@ -1,18 +1,27 @@
 using ConcessionariaApp.Application.Mapping;
 using ConcessionariaApp.Domain.Entities;
-using ConcessionariaApp.Infrastructure.Autentications;
+using ConcessionariaApp.Infrastructure.Contexts;
 using ConcessionariaApp.IoC;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+builder.Services.AddApplicationServices(builder.Configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Define o caminho para a página de login
+        options.LogoutPath = "/Account/Logout"; // Define o caminho para logout
+        options.Cookie.HttpOnly = true; // Torna o cookie HttpOnly para maior segurança
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Usa cookies seguros em HTTPS
+    });
 
 var app = builder.Build();
 

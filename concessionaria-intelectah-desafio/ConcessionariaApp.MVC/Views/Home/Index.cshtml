@@ -1,8 +1,14 @@
-﻿@{
+﻿@using System.Security.Claims
+@model ConcessionariaApp.Application.Dtos.Autenticacao.RegistrarUsuarioDTO
+@{
     ViewData["Title"] = "Home Page";
+    var usuarioNome = Context.User.Identity.Name;
+    var role = Context.User.FindFirst(ClaimTypes.Role)?.Value;
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<h1>@usuarioNome</h1>
+<h1>@role</h1>

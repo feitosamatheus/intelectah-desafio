@@ -1,0 +1,46 @@
+﻿<link rel="stylesheet" href="~/css/layout/header.css">
+
+<header class="container-header bg-header z-index-3">
+    <section class="container-header-item">
+        <button class="btn-header-toggle ms-3" id="btn-header-toggle" data-state="false">
+            <span class="icon-header-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+        </button>
+        <a class="btn-header-logo ms-3" asp-area="" asp-controller="Home" asp-action="Index">
+            <span class="icon-header-logo">
+                <span class="ms-2 desc-header-logo">Concessionária</span>
+            </span>
+        </a>
+    </section>
+    <section class="container-header-item">
+        <nav class="navbar box-shadow d-flex justify-content-end align-items-center me-4">
+            <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-three-dots hover-three"></i></button>
+            <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                <span class="p-1 m-0" type="button">
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user">
+                </span>
+            </button>
+            <ul class="dropdown-menu dropdown-header-custom">
+                <li class="d-flex justify-content-center pt-2">
+                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user-dropdown">
+                </li>
+                <li class="d-flex justify-content-center mt-1 ps-2 pe-2">
+                    <div class="d-flex justify-content-center flex-column lh-sm">
+                        <h5 class="text-center text-break">Matheus Feitosa</h5>
+                        <p>@User.Identity.Name</p>
+                    </div>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="text-center mb-2"> 
+                    <p>Unidade: 102-Paulista</p>
+                </li>
+                <li class="text-center btn-header-logout">
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="dropdown-item-custom p-1 text-light">
+                        <button type="submit" class="nav-link btn btn-link text-light w-100"><i class="bi bi-box-arrow-right me-1"></i> Sair</button>
+                    </form>
+                </li>
+            </ul>
+       </nav>
+    </section>
+</header>

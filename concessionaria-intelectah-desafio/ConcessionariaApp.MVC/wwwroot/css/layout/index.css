@@ -1,0 +1,33 @@
+﻿.cont-section-principal {
+    position: relative;
+    top: 60px;
+    height: 87vh;
+}
+
+.main {
+    margin-left: 65px;
+    margin-right: 10px;
+    overflow: hidden;
+    transition: margin 0.4s;
+    color: black;
+}
+
+.open-main {
+    margin-left: 190px !important;
+    margin-right: 8px !important;
+    margin-top: 0 !important;
+}
+
+@media (width < 680px) {
+    .main {
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 0;
+    }
+
+    .open-main {
+        margin-left: 6px !important;
+        margin-right: 6px !important;
+        margin-top: 0 !important;
+    }
+}

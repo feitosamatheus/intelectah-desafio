@@ -1,6 +1,12 @@
 ﻿using ConcessionariaApp.Application.Dtos.Autenticacao;
 using ConcessionariaApp.Application.Interfaces;
+using ConcessionariaApp.Domain.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using ConcessionariaApp.Application.Dtos.Login;
 
 namespace ConcessionariaApp.MVC.Controllers
 {
@@ -27,10 +33,12 @@ namespace ConcessionariaApp.MVC.Controllers
             
             var usuarioResultado = await _loginService.Login(dto);
 
-            return usuarioResultado.Sucesso ? 
-                        RedirectToAction("Index", "Home") : View(usuarioResultado);
+            if(usuarioResultado.Sucesso)
+                return RedirectToAction("Index", "Home");
+
+            return View(dto);
         }
-        
+
         public IActionResult Registrar()
         {
             return View();
@@ -49,9 +57,11 @@ namespace ConcessionariaApp.MVC.Controllers
                         RedirectToAction("Index", "Home") : View(usuarioResultado);
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            return View();
+            await _loginService.EncerrarSessao();
+
+            return RedirectToAction("Index", "Login");
         }
     }
 }

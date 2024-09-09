@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{08D39C2F-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{1DF1DC95-32E6-4A38-867D-AE08398DC766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaApp.Application", "ConcessionariaApp.Application\ConcessionariaApp.Application.csproj", "{B6F7C5DB-F1F6-4E58-AEA5-D506DA6B0A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcessionariaApp.Application", "ConcessionariaApp.Application\ConcessionariaApp.Application.csproj", "{B6F7C5DB-F1F6-4E58-AEA5-D506DA6B0A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaApp.Domain", "ConcessionariaApp.Domain\ConcessionariaApp.Domain.csproj", "{50686B93-3474-44F4-A8F9-44C21D2DDB5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcessionariaApp.Domain", "ConcessionariaApp.Domain\ConcessionariaApp.Domain.csproj", "{50686B93-3474-44F4-A8F9-44C21D2DDB5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaApp.Infrastructure", "ConcessionariaApp.Infrastructure\ConcessionariaApp.Infrastructure.csproj", "{0B38082E-8795-407E-BCC9-963BF493FCE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcessionariaApp.Infrastructure", "ConcessionariaApp.Infrastructure\ConcessionariaApp.Infrastructure.csproj", "{0B38082E-8795-407E-BCC9-963BF493FCE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaApp.IoC", "ConcessionariaApp.IoC\ConcessionariaApp.IoC.csproj", "{0192DEC6-4FC1-4C79-B38C-A7390EA067DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcessionariaApp.IoC", "ConcessionariaApp.IoC\ConcessionariaApp.IoC.csproj", "{0192DEC6-4FC1-4C79-B38C-A7390EA067DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcessionariaApp.MVC", "ConcessionariaApp.MVC\ConcessionariaApp.MVC.csproj", "{C150DE7B-99E2-44A1-B7F0-66D575F15182}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcessionariaApp.MVC", "ConcessionariaApp.MVC\ConcessionariaApp.MVC.csproj", "{C150DE7B-99E2-44A1-B7F0-66D575F15182}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

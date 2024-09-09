@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "_Layout";
+    var usuarioLogado = Context.User.Identity.IsAuthenticated;
+    if(usuarioLogado)
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_LayoutVazio";
+    }
 }
