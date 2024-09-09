@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
-using ConcessionariaApp.Application.UseCases.Login.Command.CriarUsuario;
+using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;

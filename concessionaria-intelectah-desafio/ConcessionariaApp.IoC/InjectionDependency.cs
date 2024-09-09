@@ -14,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ConcessionariaApp.Application.Services;
 using ConcessionariaApp.Application.Mapping;
-using Microsoft.AspNetCore.Hosting;
 
 namespace ConcessionariaApp.IoC
 {
@@ -24,13 +23,14 @@ namespace ConcessionariaApp.IoC
         {
             services.AddRedisConfiguration(configuration);
             services.AddDatabaseConfiguration(configuration);
-            services.AddIdentityConfiguration(configuration);
 
             return services;
         }
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
+
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IConcessionariaRepository, ConcessionariaRepository>();
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
@@ -42,7 +42,7 @@ namespace ConcessionariaApp.IoC
 
             services.AddScoped<ILoginService, LoginService>();
 
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<ICashingService, CashingService>();
 

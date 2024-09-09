@@ -10,11 +10,13 @@ namespace ConcessionariaApp.Domain.Common
     {      
         public bool Sucesso { get; }
         public string Menssagem { get; }
+        public Object Objeto { get; }
 
-        public ResultadoOperacao(bool sucesso, string menssagem = "Operação realizada com sucesso.")
+        public ResultadoOperacao(bool sucesso, string menssagem = "Operação realizada com sucesso.", object objeto = null)
         {
             Sucesso = sucesso;
             Menssagem = menssagem;
+            Objeto = objeto;
         }
 
         public static ResultadoOperacao OK(string menssagem = "") 

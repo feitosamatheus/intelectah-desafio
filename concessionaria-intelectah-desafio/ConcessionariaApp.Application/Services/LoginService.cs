@@ -2,7 +2,8 @@
 using ConcessionariaApp.Application.Dtos.Autenticacao;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
-using ConcessionariaApp.Application.UseCases.Login.Command.CriarUsuario;
+using ConcessionariaApp.Application.UseCases.Login.Command.EncerrarSessao;
+using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using ConcessionariaApp.Domain.Common;
 using MediatR;
 using System;
@@ -33,5 +34,12 @@ namespace ConcessionariaApp.Application.Services
         {
             return await _mediator.Send(_mapper.Map<RegistrarUsuarioCommand>(dto));
         }
+        
+        public async Task EncerrarSessao()
+        {
+            await _mediator.Send(new EncerrarSessaoCommand());
+        }
+   
+        
     }
 }

@@ -5,11 +5,17 @@ namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class Email
     {
+        public int UsuarioId { get; set; }
         public string EnderecoEmail { get; private set; }
+
+        public Email()
+        {
+            
+        }
 
         public Email(string enderecoEmail)
         {
-            if (ValidarEmail(enderecoEmail))
+            if (!ValidarEmail(enderecoEmail))
                 throw new EmailInvalidoException();
 
             EnderecoEmail = enderecoEmail;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Login.Command.CriarUsuario
+namespace ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario
 {
     public sealed record RegistrarUsuarioCommand(
         string Nome, 

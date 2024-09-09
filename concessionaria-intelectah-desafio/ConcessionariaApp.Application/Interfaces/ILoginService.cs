@@ -12,5 +12,6 @@ namespace ConcessionariaApp.Application.Interfaces
     {
         Task<ResultadoOperacao> Login(AutenticarUsuarioDTO dto);
         Task<ResultadoOperacao> Registrar(RegistrarUsuarioDTO dto);
+        Task EncerrarSessao();
     }
 }

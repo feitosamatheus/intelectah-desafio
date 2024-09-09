@@ -6,9 +6,9 @@ namespace ConcessionariaApp.Domain.Entities
 {
     public class Usuario : BaseEntity
     {
-        public string NomeUsuario { get; private set; }
-        public string Senha { get; private set; }
-        public Email Email { get; private set; }
+        public string NomeUsuario { get;  private set; }
+        public string Senha { get;  private set; }
+        public Email Email { get;  private set; }
         public ENivelAcesso NivelAcesso { get; private set; }
 
         public Usuario() { }
@@ -34,5 +34,26 @@ namespace ConcessionariaApp.Domain.Entities
             return new Usuario(nomeUsuario, senha, email,nivelAcesso);
         }
 
+        public void AtualizarSenha(string senha)
+        {
+            if (string.IsNullOrWhiteSpace(senha))
+                throw new ArgumentException("Senha não pode ser vazio.");
+
+            Senha = senha;
+        }
+
+        public void AtualizarNomeUsuario(string nome)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentException("Nome do usuário não pode ser vazio.");
+
+            NomeUsuario = nome;
+        }
+
+        public void AtualizarEmail(string enderecoEmail)
+        {
+            var email = new Email(enderecoEmail);
+            Email = email;
+        }
     }
 }
