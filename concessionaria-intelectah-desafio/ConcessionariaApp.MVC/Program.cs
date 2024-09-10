@@ -21,6 +21,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LogoutPath = "/Account/Logout"; // Define o caminho para logout
         options.Cookie.HttpOnly = true; // Torna o cookie HttpOnly para maior segurança
         options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Usa cookies seguros em HTTPS
+        options.Cookie.HttpOnly = true;
+        options.Cookie.MaxAge = TimeSpan.FromDays(1);
     });
 
 var app = builder.Build();

@@ -1,0 +1,106 @@
+﻿@model ConcessionariaApp.Application.Dtos.Fabricantes.CriarFabricanteDTO
+<style>
+    .summary-custom {
+        background: #ff00003d;
+        border-radius: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .summary-custom ul {
+            padding:10px;
+        }
+
+        .summary-custom li {
+            list-style: none;
+        }
+</style>
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="text-center mb-2 p-3">Adicionar Fabricante</h4>
+                <form asp-action="CriarFabricante" asp-controller="Fabricante" id="registroForm" method="post">
+                    @Html.ValidationSummary(false, "]", new { @class = "summary-custom" })
+                    @Html.AntiForgeryToken()
+                    <div class="mb-2">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" maxlength="100" required />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="PaisOrigem" class="form-label"></label>
+                        <input asp-for="PaisOrigem" class="form-control" required />
+                        <span asp-validation-for="PaisOrigem" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="AnoFundacao" class="form-label"></label>
+                        <input asp-for="AnoFundacao" class="form-control" required />
+                        <span asp-validation-for="AnoFundacao" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="WebSite" class="form-label"></label>
+                        <input asp-for="WebSite" class="form-control" required />
+                        <span asp-validation-for="WebSite" class="text-danger"></span>
+                    </div>
+                    <button type="submit"  class="btn btn-primary col-12">Adicionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    $(document).ready(function () {
+        
+        $('#registroForm').submit(function (e) {
+            param = {
+                'Nome': $('#Nome').val(),
+                'PaisOrigem': $('#PaisOrigem').val(),
+                'AnoFundacao': parseInt($('#AnoFundacao').val(), 10),
+                'WebSite': $('#WebSite').val(),
+            }
+
+            e.preventDefault(); 
+            $.ajax({
+                url: '@Url.Action("Criar", "Fabricante")', 
+                type: 'POST',
+                data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                beforeSend: {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                if (response.sucesso) {
+                    $('.summary-custom').empty();
+                    $('#registroForm')[0].reset(); 
+                    RemoverLoading()
+                    MenssagemSucesso(response.menssagem)
+                } else {
+                    updateValidationSummary(response.menssagem)
+                    RemoverLoading()
+                    MenssageAlerta(response.menssagem)
+                }
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false
+        });
+    });
+
+    function updateValidationSummary(message) {
+        $('.summary-custom').empty();
+        $('.summary-custom').append('<ul><li>' + message + '</li></ul>');
+    }
+</script>

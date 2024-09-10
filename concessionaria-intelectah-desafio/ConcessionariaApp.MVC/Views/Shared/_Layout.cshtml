@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/css/layout/index.css" asp-append-version="true" />
     <!-- fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
     <partial name="_Header" />
@@ -25,11 +26,14 @@
         </main>
     </section>
 
+    @await Html.PartialAsync("Partial/_LoadingSpinners")
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/js/defaultCustomScript.js" asp-append-version="true"></script>
     <script>
         const containerSidebar = document.querySelector('.cont-sidebar');
         const containerSidebarMobile = document.querySelector('.cont-sidebar-mobile');

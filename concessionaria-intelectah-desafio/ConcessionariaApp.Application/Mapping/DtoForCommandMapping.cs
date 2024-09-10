@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
+using ConcessionariaApp.Application.Dtos.Fabricantes;
+using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using System;
@@ -19,7 +21,10 @@ namespace ConcessionariaApp.Application.Mapping
                 .ForCtorParam("Nome", opt => opt.MapFrom(src => src.Nome))
             .ForCtorParam("Sobrenome", opt => opt.MapFrom(src => src.Sobrenome))
             .ForCtorParam("Email", opt => opt.MapFrom(src => src.Email))
-            .ForCtorParam("Senha", opt => opt.MapFrom(src => src.Senha)); ;
+            .ForCtorParam("Senha", opt => opt.MapFrom(src => src.Senha));
+
+            CreateMap<CriarFabricanteDTO, CriarFabricanteCommand>();
+
 
         }
     }

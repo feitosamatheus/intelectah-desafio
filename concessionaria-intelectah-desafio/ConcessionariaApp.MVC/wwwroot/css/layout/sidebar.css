@@ -85,7 +85,7 @@
 }
 
 .dropdown-item:hover {
-    color: #1e2125cc !important;
+    color: rgba(0, 0, 0, 0.15) !important;
     background-color: transparent !important;
 }
 

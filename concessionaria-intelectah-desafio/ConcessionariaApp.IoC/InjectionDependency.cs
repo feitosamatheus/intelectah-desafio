@@ -41,6 +41,7 @@ namespace ConcessionariaApp.IoC
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IFabricanteService, FabricanteService>();
 
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<IHashingService, HashingService>();

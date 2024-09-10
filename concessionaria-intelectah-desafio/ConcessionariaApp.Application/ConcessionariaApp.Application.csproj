@@ -14,7 +14,6 @@
     <Folder Include="UseCases\Login\Query\BuscaRoleUsuario\" />
     <Folder Include="UseCases\Concessionarias\Commands\" />
     <Folder Include="UseCases\Concessionarias\Querys\" />
-    <Folder Include="UseCases\Fabricantes\Commands\AdicionarFabricante\" />
     <Folder Include="UseCases\Fabricantes\Querys\BuscarFabricante\" />
   </ItemGroup>
 

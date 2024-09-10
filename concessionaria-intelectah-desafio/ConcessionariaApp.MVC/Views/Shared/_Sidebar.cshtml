@@ -9,7 +9,7 @@
             </span>
         </a>
         <div>
-            <a class="col-sidebar" data-bs-toggle="collapse" href="#fabricantesSubMenu" role="button" aria-expanded="false" aria-controls="fabricantesSubMenu" title="Fabricantes">
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#fabricantesSubMenu" role="button" aria-expanded="false" aria-controls="fabricantesSubMenu" title="Fabricantes" data-page="Fabricante">
                 <span class="span-col-sidebar">
                     <i class="fa-solid fa-industry icon-col-sidebar"></i>
                     <span class="desc-col-sidebar">Fabricantes</span>
@@ -18,13 +18,13 @@
             <div class="collapse" id="fabricantesSubMenu">
                 <ul class="list-unstyled">
                     <li>
-                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Adicionar" title="Adicionar Fabricante">
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Index" title="Adicionar Fabricante" data-page="CriarFabricante">
                             <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
                             <span class="descDropdowColapseCustom">Adicionar Fabricante</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Listar" title="Listar Fabricante">
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Listar" title="Listar Fabricante" data-page="Fabricante">
                             <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
                             <span class="descDropdowColapseCustom">Listar Fabricante</span>
                         </a>
