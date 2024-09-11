@@ -2,8 +2,10 @@
 using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante;
+using ConcessionariaApp.Application.UseCases.Fabricantes.Querys.BuscarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using ConcessionariaApp.Domain.Common;
+using ConcessionariaApp.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,13 @@ namespace ConcessionariaApp.Application.Services
         public async Task<ResultadoOperacao> CriarFabricante(CriarFabricanteDTO dto)
         {
             return await _mediator.Send(_mapper.Map<CriarFabricanteCommand>(dto));
+
+        }
+
+        public async Task<IEnumerable<FabricanteDTO>> ObterTodosParticipantes()
+        {
+            var fabricantes = await _mediator.Send( new ObterTodosFabricantesQuery());
+            return _mapper.Map<IEnumerable<FabricanteDTO>>(fabricantes);
 
         }
     }

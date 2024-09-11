@@ -14,12 +14,13 @@
     <Folder Include="UseCases\Login\Query\BuscaRoleUsuario\" />
     <Folder Include="UseCases\Concessionarias\Commands\" />
     <Folder Include="UseCases\Concessionarias\Querys\" />
-    <Folder Include="UseCases\Fabricantes\Querys\BuscarFabricante\" />
+    <Folder Include="UseCases\Veiculos\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

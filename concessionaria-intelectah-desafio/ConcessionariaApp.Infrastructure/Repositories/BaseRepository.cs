@@ -1,6 +1,7 @@
 ﻿using ConcessionariaApp.Domain.Common;
 using ConcessionariaApp.Domain.Interfaces.Repositories;
 using ConcessionariaApp.Infrastructure.Contexts;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ namespace ConcessionariaApp.Infrastructure.Repositories
         {
             context.Add(value);
         }
-
         public void Delete(T value)
         {
             context.Remove(value);
@@ -32,7 +32,7 @@ namespace ConcessionariaApp.Infrastructure.Repositories
 
         public void Update(T value)
         {
-            throw new NotImplementedException();
+           context.Update(value);
         }
 
         public async Task<T> GetAsync(int id, CancellationToken cancellationToken)
@@ -44,8 +44,5 @@ namespace ConcessionariaApp.Infrastructure.Repositories
         {
             return await context.Set<T>().ToListAsync(cancellationToken);
         }
-
-
-        
     }
 }

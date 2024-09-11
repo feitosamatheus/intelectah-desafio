@@ -1,0 +1,148 @@
+﻿@model ConcessionariaApp.Application.Dtos.Veiculos.CadastrarVeiculoDTO
+<style>
+    .validation-summary-errors {
+        background: #ff00003d;
+        border-radius: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .validation-summary-errors ul {
+            padding: 10px;
+        }
+
+        .validation-summary-errors li {
+            list-style: none;
+        }
+
+    .btn-color-custom {
+        background-color: chocolate !important;
+        color: white;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="text-start mb-2 p-1">Adicionar Veículo</h4>
+                <form class="p-2" asp-action="Cadastrar" asp-controller="Veiculo" id="Form" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "summary-custom" })
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="Modelo" class="form-label"></label>
+                            <input asp-for="Modelo" class="form-control" maxlength="100" required />
+                            <span asp-validation-for="Modelo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="AnoFabricacao" class="form-label"></label>
+                            @Html.DropDownList("AnoFabricacao", (IEnumerable<SelectListItem>)ViewBag.AnosFabricao, "Selecione uma opção", new { @class = "form-control", id = "AnoFabricacao" })
+                            <span asp-validation-for="AnoFabricacao" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="Preco" class="form-label"></label>
+                            <input asp-for="Preco" class="form-control" type="number" step="0.01" name="quantity" min="0.01" />
+                            <span asp-validation-for="Preco" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="FabricanteId" class="form-label"></label>
+                            @Html.DropDownList("FabricanteId", (IEnumerable<SelectListItem>)ViewBag.Fabricantes, "Selecione uma opção", new { @class = "form-control", id = "FabricanteId" })
+                            <span asp-validation-for="FabricanteId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="TipoVeiculo" class="form-label"></label>
+                            @Html.DropDownList("TipoVeiculo", (IEnumerable<SelectListItem>)ViewBag.TipoVeiculos, "Selecione uma opção", new { @class = "form-control", id = "TipoVeiculo" })
+                            <span asp-validation-for="TipoVeiculo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="Descricao" class="form-label"></label>
+                            <input asp-for="Descricao" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-4 text-end">
+                            <button type="submit" class="btn btn-color-custom col-6 text-center ">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#preco').on('input', function () {
+            // Remove caracteres não numéricos
+            var valor = $(this).val().replace(/[^0-9,]/g, '');
+
+            // Substitui a vírgula por ponto para conversão
+            valor = valor.replace(',', '.');
+
+            // Converte o valor para número
+            var numero = parseFloat(valor);
+
+            // Formata o número e atualiza o campo
+            if (!isNaN(numero)) {
+                $(this).val(numeroParaReal(numero));
+            }
+        });
+        $('#Form').submit(function (e) {
+            param = {
+                'Modelo': $('#Modelo').val(),
+                'AnoFabricacao': $('#AnoFabricacao').find('option:selected').prop('value'),
+                'Preco': parseInt($('#Preco').val(), 10),
+                'FabricanteId': $('#FabricanteId').find('option:selected').prop('value'),
+                'TipoVeiculo': $('#TipoVeiculo option:selected').text(),
+                'Descricao': $('#Descricao').val()
+            }
+            console.log(param)
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("Cadastrar", "Veiculo")',
+                type: 'POST',
+                data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                if (response.sucesso) {
+                    $('.summary-custom').empty();
+                    $('#Form')[0].reset();
+                    RemoverLoading()
+                    MenssagemSucesso(response.menssagem)
+                } else {
+                    updateValidationSummary(response.menssagem)
+                    RemoverLoading()
+                    MenssageAlerta(response.menssagem)
+                }
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false
+        });
+    });
+
+    function numeroParaReal(numero) {
+        return "R$ " + numero.toFixed(2).replace('.', ',');
+    }
+    function updateValidationSummary(message) {
+        $('.summary-custom').empty();
+        $('.summary-custom').append('<ul><li>' + message + '</li></ul>');
+    }
+</script>

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.Dtos.Login;
 using ConcessionariaApp.Domain.Entities;
 using System;
@@ -15,6 +16,7 @@ namespace ConcessionariaApp.Application.Mapping
         {
             CreateMap<Usuario, AutenticacaoUsuarioResultadoDTO>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.EnderecoEmail));
+            CreateMap<Fabricante, FabricanteDTO>();
         }
     }
 }

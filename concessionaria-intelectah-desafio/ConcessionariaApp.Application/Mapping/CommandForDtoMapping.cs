@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
+using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using System;

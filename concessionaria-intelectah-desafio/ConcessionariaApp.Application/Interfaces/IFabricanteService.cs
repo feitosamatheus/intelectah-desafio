@@ -11,5 +11,6 @@ namespace ConcessionariaApp.Application.Interfaces
     public interface IFabricanteService
     {
         Task<ResultadoOperacao> CriarFabricante(CriarFabricanteDTO dto);
+        Task<IEnumerable<FabricanteDTO>> ObterTodosParticipantes();
     }
 }

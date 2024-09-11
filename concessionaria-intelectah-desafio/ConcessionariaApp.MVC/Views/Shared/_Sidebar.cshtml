@@ -32,12 +32,30 @@
                 </ul>
             </div>
         </div>
-        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
-            <span class="span-col-sidebar">
-                <i class="fa-solid fa-car icon-col-sidebar"></i>
-                <span class="desc-col-sidebar">Veículos</span>
-            </span>
-        </a>
+        <div>
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#veiculosSubMenu" role="button" aria-expanded="false" aria-controls="veiculosSubMenu" title="Veículos" data-page="Veiculo">
+                <span class="span-col-sidebar">
+                    <i class="fa-solid fa-car icon-col-sidebar"></i>
+                    <span class="desc-col-sidebar">Veículos</span>
+                </span>
+            </a>
+            <div class="collapse" id="veiculosSubMenu">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Veiculo" asp-action="Cadastrar" title="Cadastrar veículo" data-page="CadastarVeiculo">
+                            <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Cadastrar Veículo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Cadastrar" asp-action="Listar" title="Listar veículo" data-page="ListarVeiculo">
+                            <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Listar Veículo</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="Login">
             <span class="span-col-sidebar">
                 <i class="fa-solid fa-store icon-col-sidebar"></i>

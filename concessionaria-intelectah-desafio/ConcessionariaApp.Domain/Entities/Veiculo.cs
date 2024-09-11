@@ -16,11 +16,8 @@ namespace ConcessionariaApp.Domain.Entities
         public ICollection<Venda> Vendas { get; private set; }
 
         public Veiculo(){ }
-        public Veiculo(string modelo, int anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
+        private Veiculo(string modelo, int anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
         {
-            if(preco < 0)
-                throw new ArgumentOutOfRangeException(nameof(Preco), "O preço não pode ser negativo.");
-
             Modelo = modelo;
             AnoFabricacao = anoFabricacao;
             Preco = preco;
@@ -28,5 +25,24 @@ namespace ConcessionariaApp.Domain.Entities
             TipoVeiculo = tipoVeiculo;
             Descricao = descricao;
         }
+
+        public static Veiculo Criar(string modelo, int anoFabricacao, decimal preco, int fabricanteId, ETipoVeiculo tipoVeiculo, string descricao = "")
+        {
+            if (preco <= 0)
+                throw new ArgumentOutOfRangeException(nameof(Preco), "O preço não pode ser negativo.");
+            if (anoFabricacao > DateTime.Now.Year)
+                throw new ArgumentOutOfRangeException(nameof(Preco), "Ano de fabricação não pode ser no futuro.");
+            if (anoFabricacao < 1920)
+                throw new ArgumentOutOfRangeException(nameof(Preco), "Ano inválido.");
+            if (preco <= 0)
+                throw new ArgumentOutOfRangeException(nameof(Preco), "Preço inválido.");
+            if (fabricanteId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(Preco), "Fabricante inválido.");
+            if (!Enum.IsDefined(typeof(ETipoVeiculo), tipoVeiculo))
+                throw new ArgumentException("Tipo de veículo inválido.", nameof(tipoVeiculo));
+
+            return new Veiculo(modelo, anoFabricacao, preco, fabricanteId, tipoVeiculo, descricao);
+        }
+
     }
 }

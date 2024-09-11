@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
 using ConcessionariaApp.Application.Dtos.Fabricantes;
+using ConcessionariaApp.Application.Dtos.Veiculos;
 using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
+using ConcessionariaApp.Application.UseCases.Veiculos.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,7 @@ namespace ConcessionariaApp.Application.Mapping
             .ForCtorParam("Senha", opt => opt.MapFrom(src => src.Senha));
 
             CreateMap<CriarFabricanteDTO, CriarFabricanteCommand>();
-
+            CreateMap<CadastrarVeiculoDTO, CadastrarVeiculoCommand>();
 
         }
     }

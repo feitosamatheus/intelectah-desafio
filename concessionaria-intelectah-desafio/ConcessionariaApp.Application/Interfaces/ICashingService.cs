@@ -9,6 +9,8 @@ namespace ConcessionariaApp.Application.Interfaces
     public interface ICashingService
     {
         Task AtualizarCacheAynsc(string chave, string valor);
-        Task<string> BuscarCacheAsync(string chave);
+        Task AtualizarListaCacheAynsc<T>(string chave, IEnumerable<T> lista);
+        Task<T> BuscarCacheAsync<T>(string chave);
+        Task<IEnumerable<T>> BuscarCacheListAsync<T>(string chave);
     }
 }

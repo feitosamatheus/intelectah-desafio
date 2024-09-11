@@ -1,6 +1,6 @@
 ﻿@model ConcessionariaApp.Application.Dtos.Fabricantes.CriarFabricanteDTO
 <style>
-    .summary-custom {
+    .validation-summary-errors {
         background: #ff00003d;
         border-radius: 8px;
         list-style: none;
@@ -8,11 +8,11 @@
         margin: 0;
     }
 
-        .summary-custom ul {
+        .validation-summary-errors ul {
             padding:10px;
         }
 
-        .summary-custom li {
+        .validation-summary-errors li {
             list-style: none;
         }
 </style>
@@ -22,7 +22,7 @@
             <div class="card-body">
                 <h4 class="text-center mb-2 p-3">Adicionar Fabricante</h4>
                 <form asp-action="CriarFabricante" asp-controller="Fabricante" id="registroForm" method="post">
-                    @Html.ValidationSummary(false, "]", new { @class = "summary-custom" })
+                    @Html.ValidationSummary(false, "", new { @class = "summary-custom" })
                     @Html.AntiForgeryToken()
                     <div class="mb-2">
                         <label asp-for="Nome" class="form-label"></label>
@@ -76,7 +76,7 @@
                 headers: {
                     'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                 },
-                beforeSend: {
+                beforeSend: () => {
                     AdicionarLoading()
                 }
             }).done(function (response) {
