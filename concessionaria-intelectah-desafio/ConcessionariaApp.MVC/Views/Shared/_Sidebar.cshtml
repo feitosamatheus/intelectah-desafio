@@ -1,4 +1,10 @@
-﻿<link rel="stylesheet" href="~/css/layout/sidebar.css">
+﻿@using System.Security.Claims
+@{
+    var usuarioNome = Context.User.Identity.Name;
+    var role = Context.User.FindFirst(ClaimTypes.Role)?.Value;
+}
+
+<link rel="stylesheet" href="~/css/layout/sidebar.css">
 
 <aside class="cont-sidebar">
     <nav class="nav-sidebar">
@@ -8,7 +14,7 @@
                 <span class="desc-col-sidebar">Dashboard</span>
             </span>
         </a>
-        <div>
+        <authorize-role roles="Administrador">
             <a class="col-sidebar" data-bs-toggle="collapse" href="#fabricantesSubMenu" role="button" aria-expanded="false" aria-controls="fabricantesSubMenu" title="Fabricantes" data-page="Fabricante">
                 <span class="span-col-sidebar">
                     <i class="fa-solid fa-industry icon-col-sidebar"></i>
@@ -18,9 +24,9 @@
             <div class="collapse" id="fabricantesSubMenu">
                 <ul class="list-unstyled">
                     <li>
-                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Index" title="Adicionar Fabricante" data-page="CriarFabricante">
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Fabricante" asp-action="Cadastrar" title="Adicionar Fabricante" data-page="CriarFabricante">
                             <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
-                            <span class="descDropdowColapseCustom">Adicionar Fabricante</span>
+                            <span class="descDropdowColapseCustom">Cadastrar</span>
                         </a>
                     </li>
                     <li>
@@ -31,8 +37,8 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <div>
+        </authorize-role>
+        <authorize-role roles="Administrador, Gerente">
             <a class="col-sidebar" data-bs-toggle="collapse" href="#veiculosSubMenu" role="button" aria-expanded="false" aria-controls="veiculosSubMenu" title="Veículos" data-page="Veiculo">
                 <span class="span-col-sidebar">
                     <i class="fa-solid fa-car icon-col-sidebar"></i>
@@ -44,43 +50,31 @@
                     <li>
                         <a class="dropdown-item dropdowColapseCustom" asp-controller="Veiculo" asp-action="Cadastrar" title="Cadastrar veículo" data-page="CadastarVeiculo">
                             <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
-                            <span class="descDropdowColapseCustom">Cadastrar Veículo</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Cadastrar" asp-action="Listar" title="Listar veículo" data-page="ListarVeiculo">
-                            <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
-                            <span class="descDropdowColapseCustom">Listar Veículo</span>
+                            <span class="descDropdowColapseCustom">Cadastrar</span>
                         </a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div>
+        </authorize-role>
+        <authorize-role roles="Administrador">
             <a class="col-sidebar" data-bs-toggle="collapse" href="#concessionariaSubMenu" role="button" aria-expanded="false" aria-controls="concessionariaSubMenu" title="Concessionárias" data-page="Concessionaria">
-            <span class="span-col-sidebar">
-                <i class="fa-solid fa-store icon-col-sidebar"></i>
-                <span class="desc-col-sidebar">Concessionárias</span>
-            </span>
-        </a>
+                <span class="span-col-sidebar">
+                    <i class="fa-solid fa-store icon-col-sidebar"></i>
+                    <span class="desc-col-sidebar">Concessionárias</span>
+                </span>
+            </a>
             <div class="collapse" id="concessionariaSubMenu">
-            <ul class="list-unstyled">
-                <li>
-                    <a class="dropdown-item dropdowColapseCustom" asp-controller="Concessionaria" asp-action="Cadastrar" title="Cadastrar Concessionárias" data-page="CadastarConcessionaria">
-                        <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
-                        <span class="descDropdowColapseCustom">Cadastrar Concessionárias</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item dropdowColapseCustom" asp-controller="Concessionaria" asp-action="Listar" title="Listar Concessionárias" data-page="ListarConcessionaria">
-                        <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
-                        <span class="descDropdowColapseCustom">Listar Concessionárias</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        </div>
-        <div>
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Concessionaria" asp-action="Cadastrar" title="Cadastrar Concessionárias" data-page="CadastarConcessionaria">
+                            <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Cadastrar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </authorize-role>
+        <authorize-role roles="Administrador, Gerente, Vendedor">
             <a class="col-sidebar" data-bs-toggle="collapse" href="#vendaSubMenu" role="button" aria-expanded="false" aria-controls="vendaSubMenu" title="Vendas" data-page="Venda">
                 <span class="span-col-sidebar">
                     <i class="fa-solid fa-money-check-dollar icon-col-sidebar"></i>
@@ -90,20 +84,22 @@
             <div class="collapse" id="vendaSubMenu">
                 <ul class="list-unstyled">
                     <li>
-                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Venda" asp-action="Registrar" title="Registrar Venda" data-page="RegistrarVenda">
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Venda" asp-action="Registrar" title="Registrar Venda" data-page="Registrar">
                             <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
                             <span class="descDropdowColapseCustom">Nova venda</span>
                         </a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
-            <span class="span-col-sidebar">
-                <i class="fa-solid fa-database icon-col-sidebar"></i>
-                <span class="desc-col-sidebar">Relatorios</span>
-            </span>
-        </a>
+        </authorize-role>
+        <authorize-role roles="Administrador, Gerente">
+            <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
+                <span class="span-col-sidebar">
+                    <i class="fa-solid fa-database icon-col-sidebar"></i>
+                    <span class="desc-col-sidebar">Relatorios</span>
+                </span>
+            </a>
+        </authorize-role>
     </nav>
     
 </aside>

@@ -16,9 +16,19 @@ namespace ConcessionariaApp.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Veiculo>> BucarVeiculoPorProdutoModelo(string modelo, int fabricanteId)
+        public async Task<IEnumerable<Veiculo>> BucarVeiculoPorFabricante(int fabricanteId)
         {
-            return await context.Veiculos.Where(v => v.Modelo == modelo && v.FabricanteId == fabricanteId).ToListAsync();
+            return await context.Veiculos.Include(f => f.Fabricante).Where(v => v.FabricanteId == fabricanteId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Veiculo>> BucarVeiculoPorModelo(string modelo)
+        {
+            return await context.Veiculos.Include(f => f.Fabricante).Where(v => v.Modelo == modelo).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Veiculo>> BucarVeiculoPorFabricanteModelo(string modelo, int fabricanteId)
+        {
+            return await context.Veiculos.Include(f=> f.Fabricante).Where(v => v.Modelo == modelo && v.FabricanteId == fabricanteId).ToListAsync();
         }
     }
 }

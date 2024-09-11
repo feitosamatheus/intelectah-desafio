@@ -7,16 +7,33 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ConcessionariaApp.MVC.styles.css" asp-append-version="true" />
+    <style>
+        .bg-header-gradient {
+            background-color: darkslategray!important;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 bg-header-gradient">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ConcessionariaApp.MVC</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Concessionária</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="d-flex me-5">
+                    <div>
+                        <a class="dropdown-item  text-light" asp-controller="Login" asp-action="Index" data-page="Fabricante">
+                            Entrar
+                        </a>
+                    </div>
+                    <div>
+                        <a class="dropdown-item  text-light" asp-controller="Login" asp-action="Registrar" data-page="Fabricante">
+                            Registra-se
+                        </a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>

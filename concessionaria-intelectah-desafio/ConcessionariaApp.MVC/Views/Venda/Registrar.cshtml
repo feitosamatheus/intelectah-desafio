@@ -1,4 +1,7 @@
 ﻿@model ConcessionariaApp.Application.Dtos.Vendas.FiltroVendaDTO
+@{
+    ViewData["Title"] = "Venda";
+}
 <style>
     .btn-color-custom {
         background-color: chocolate !important;
@@ -10,8 +13,8 @@
     <div class="col-md-12">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h4 class="text-start mb-2 p-1">Buscar Veículo</h4>
-                <form class="p-2" asp-action="BuscarVeiculoPorModeloFabricante" asp-controller="Venda" id="Form" method="post">
+                <h4 class="text-start">Buscar Veículo</h4>
+                <form class="" asp-action="BuscarVeiculoPorModeloFabricante" asp-controller="Venda" id="Form" method="post">
                     <div class="row">
                         <div class="mb-2 col-4">
                             <label asp-for="Modelo" class="form-label"></label>
@@ -48,13 +51,21 @@
                 'Modelo': $('#Modelo').val(),
                 'FabricanteId': $('#FabricanteId').find('option:selected').prop('value'),
             }
+
+            if (!$('#Modelo').val() != "" || !$('#FabricanteId').find('option:selected').prop('value') != "")
+            {
+                MenssageAlerta("Informe um Modelo ou selecione um Fabricante.")
+                return false;
+            }
+
             console.log(param)
             e.preventDefault();
             $.ajax({
                 url: '@Url.Action("BuscarVeiculoPorModeloFabricante", "Venda")',
                 type: 'POST',
                 data: JSON.stringify(param),
-                dataType: "html",
+                contentType: "application/json; charset=utf-8",
+                dataType: "htmL",
                 beforeSend: () => {
                     AdicionarLoading()
                 }

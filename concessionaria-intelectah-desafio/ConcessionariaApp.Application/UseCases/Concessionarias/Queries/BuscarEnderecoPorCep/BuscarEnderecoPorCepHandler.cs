@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Concessionarias.Querys
+namespace ConcessionariaApp.Application.UseCases.Concessionarias.Queries.BuscarEnderecoPorCep
 {
     public sealed class BuscarEnderecoPorCepHandler : IRequestHandler<BuscarEnderecoPorCepQuery, Endereco>
     {
@@ -18,7 +18,7 @@ namespace ConcessionariaApp.Application.UseCases.Concessionarias.Querys
             _cepService = cepService;
         }
 
-        public async  Task<Endereco> Handle(BuscarEnderecoPorCepQuery request, CancellationToken cancellationToken)
+        public async Task<Endereco> Handle(BuscarEnderecoPorCepQuery request, CancellationToken cancellationToken)
         {
             return await _cepService.BuscarEnderecoPorCep(request.cep);
         }

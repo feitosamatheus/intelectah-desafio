@@ -11,7 +11,7 @@
                 <form asp-action="Index" method="post">
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" type="email" class="form-control" placeholder="Digite seu email">
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Digite seu email" value="Email">
                         <span asp-validation-for="Email"></span>
                     </div>
                     <div class="mb-3">
@@ -30,4 +30,7 @@
         </div>
     </div>
 </div>
-   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>

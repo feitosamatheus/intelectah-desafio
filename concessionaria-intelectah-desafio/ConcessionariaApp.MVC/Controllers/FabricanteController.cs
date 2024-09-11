@@ -1,9 +1,11 @@
 ﻿using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConcessionariaApp.MVC.Controllers
 {
+    [Authorize]
     [Route("Fabricante")]
     public class FabricanteController : Controller
     {
@@ -14,14 +16,16 @@ namespace ConcessionariaApp.MVC.Controllers
             _fabricanteService = fabricanteService;
         }
 
-        public IActionResult Index()
+        [Authorize(Roles = "Administrador")]
+        public IActionResult Cadastrar()
         {
             return View();
         }
 
-        [HttpPost("Criar")]
+        [HttpPost("CadastrarFabricante")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CriarFabricante([FromBody] CriarFabricanteDTO dto)
+        public async Task<IActionResult> CadastrarFabricante([FromBody] CadastrarFabricanteDTO dto)
         {
             if (!ModelState.IsValid)
                 return Json(new
@@ -30,7 +34,7 @@ namespace ConcessionariaApp.MVC.Controllers
                     menssagem = "Verifique se todos os campos foram preenchidos."
                 });
 
-            var resultadoCriacao = await _fabricanteService.CriarFabricante(dto);
+            var resultadoCriacao = await _fabricanteService.CadastrarFabricante(dto);
 
             return Json(resultadoCriacao);
         }

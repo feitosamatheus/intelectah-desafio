@@ -9,20 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante
+namespace ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CadastrarFabricante
 {
-    public sealed class CriarFabricanteHandler : IRequestHandler<CriarFabricanteCommand, ResultadoOperacao>
+    public sealed class CadastrarFabricanteHandler : IRequestHandler<CadastrarFabricanteCommand, ResultadoOperacao>
     {
         private readonly IFabricanteRepository _fabricanteRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CriarFabricanteHandler(IFabricanteRepository fabricanteRepository, IUnitOfWork unitOfWork)
+        public CadastrarFabricanteHandler(IFabricanteRepository fabricanteRepository, IUnitOfWork unitOfWork)
         {
             _fabricanteRepository = fabricanteRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ResultadoOperacao> Handle(CriarFabricanteCommand request, CancellationToken cancellationToken)
+        public async Task<ResultadoOperacao> Handle(CadastrarFabricanteCommand request, CancellationToken cancellationToken)
         {
             try
             {

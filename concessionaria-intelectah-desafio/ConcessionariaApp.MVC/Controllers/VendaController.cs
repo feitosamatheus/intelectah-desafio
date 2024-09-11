@@ -1,12 +1,14 @@
 ﻿using ConcessionariaApp.Application.Dtos.Vendas;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Domain.Interfaces.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ConcessionariaApp.MVC.Controllers
 {
     [Route("Venda")]
+    [Authorize]
     public class VendaController : Controller
     {
         private readonly IVendaService _vendaService;
@@ -28,13 +30,6 @@ namespace ConcessionariaApp.MVC.Controllers
             return View();
         }
         
-        [HttpPost("BuscarVeiculoPorModeloFabricante")]
-        public IActionResult BuscarVeiculoPorModeloFabricante([FromBody] FiltroVendaDTO dto)
-        {
-            var resultado = _vendaService.BuscarVeiculoPorFiltro(dto);
-            return PartialView("Partial/_RelatorioVeiculo.cshtml", resultado);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registrar(RegistrarVendaDTO dto)
@@ -49,6 +44,13 @@ namespace ConcessionariaApp.MVC.Controllers
             var resultadoRegistro = await _vendaService.RegistrarVenda(dto);
 
             return Json(resultadoRegistro);
+        }
+
+        [HttpPost("BuscarVeiculoPorModeloFabricante")]
+        public async Task<IActionResult> BuscarVeiculoPorModeloFabricante([FromBody] FiltroVendaDTO dto)
+        {
+            var resultado = await _vendaService.BuscarVeiculoPorFiltro(dto);
+            return PartialView("Partial/_RelatorioVeiculo", resultado);
         }
     }
 }

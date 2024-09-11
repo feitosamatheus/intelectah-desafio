@@ -1,4 +1,7 @@
-﻿@model ConcessionariaApp.Application.Dtos.Fabricantes.CriarFabricanteDTO
+﻿@model ConcessionariaApp.Application.Dtos.Fabricantes.CadastrarFabricanteDTO
+@{
+    ViewData["Title"] = "Fabricante";
+}
 <style>
     .validation-summary-errors {
         background: #ff00003d;
@@ -15,36 +18,49 @@
         .validation-summary-errors li {
             list-style: none;
         }
+
+    .btn-color-custom {
+        background-color: chocolate !important;
+        color: white;
+    }
 </style>
 <div class="container d-flex justify-content-center align-items-center mt-3">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h4 class="text-center mb-2 p-3">Adicionar Fabricante</h4>
-                <form asp-action="CriarFabricante" asp-controller="Fabricante" id="registroForm" method="post">
-                    @Html.ValidationSummary(false, "", new { @class = "summary-custom" })
+                <h4 class="text-start mb-2 p-1">Adicionar Fabricante</h4>
+                <form class="p-2" asp-action="Cadastrar" asp-controller="Concessionaria" id="Form" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "summary-custom" })
                     @Html.AntiForgeryToken()
-                    <div class="mb-2">
-                        <label asp-for="Nome" class="form-label"></label>
-                        <input asp-for="Nome" class="form-control" maxlength="100" required />
-                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    <div class="row">
+                        <div class="mb-2 col-12">
+                            <label asp-for="Nome" class="form-label"></label>
+                            <input asp-for="Nome" class="form-control" maxlength="100" placeholder="Digite o nome do fabricante" required />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="mb-2">
-                        <label asp-for="PaisOrigem" class="form-label"></label>
-                        <input asp-for="PaisOrigem" class="form-control" required />
-                        <span asp-validation-for="PaisOrigem" class="text-danger"></span>
+                    <div class="row">
+                        <div class="mb-2 col-3">
+                            <label asp-for="PaisOrigem" class="form-label"></label>
+                            <input asp-for="PaisOrigem" class="form-control" maxlength="100" placeholder="Digite o país de origem" />
+                            <span asp-validation-for="PaisOrigem" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3" id="div-rua">
+                            <label asp-for="AnoFundacao" class="form-label"></label>
+                            <input asp-for="AnoFundacao" type="number" class="form-control" placeholder="Digite o ano de fundação" />
+                            <span asp-validation-for="AnoFundacao" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3 " id="div-cidade">
+                            <label asp-for="WebSite" class="form-label"></label>
+                            <input asp-for="WebSite" class="form-control" placeholder="Digite o website do fabricante" />
+                            <span asp-validation-for="WebSite" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="mb-2">
-                        <label asp-for="AnoFundacao" class="form-label"></label>
-                        <input asp-for="AnoFundacao" class="form-control" required />
-                        <span asp-validation-for="AnoFundacao" class="text-danger"></span>
+                    <div class="row justify-content-end">
+                        <div class="col-4 text-end">
+                            <button type="submit" class="btn btn-color-custom col-6 text-center ">Salvar</button>
+                        </div>
                     </div>
-                    <div class="mb-2">
-                        <label asp-for="WebSite" class="form-label"></label>
-                        <input asp-for="WebSite" class="form-control" required />
-                        <span asp-validation-for="WebSite" class="text-danger"></span>
-                    </div>
-                    <button type="submit"  class="btn btn-primary col-12">Adicionar</button>
                 </form>
             </div>
         </div>

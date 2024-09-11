@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Concessionarias.Querys
+namespace ConcessionariaApp.Application.UseCases.Concessionarias.Queries.BuscarEnderecoPorCep
 {
     public sealed record BuscarEnderecoPorCepQuery(string cep) : IRequest<Endereco>;
 }

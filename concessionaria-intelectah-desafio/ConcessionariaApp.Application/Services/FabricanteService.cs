@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.Interfaces;
-using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante;
+using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CadastrarFabricante;
 using ConcessionariaApp.Application.UseCases.Fabricantes.Querys.BuscarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using ConcessionariaApp.Domain.Common;
@@ -26,9 +26,9 @@ namespace ConcessionariaApp.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<ResultadoOperacao> CriarFabricante(CriarFabricanteDTO dto)
+        public async Task<ResultadoOperacao> CadastrarFabricante(CadastrarFabricanteDTO dto)
         {
-            return await _mediator.Send(_mapper.Map<CriarFabricanteCommand>(dto));
+            return await _mediator.Send(_mapper.Map<CadastrarFabricanteCommand>(dto));
 
         }
 

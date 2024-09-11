@@ -20,7 +20,14 @@ namespace ConcessionariaApp.Application.UseCases.Vendas.Queries.BuscarVeiculoPor
 
         public async Task<IEnumerable<Veiculo>> Handle(BuscarVeiculoPorFiltroVendaQuery request, CancellationToken cancellationToken)
         {
-            return await _veiculoRepository.BucarVeiculoPorProdutoModelo(request.Modelo, request.FabricanteId);
+            if (request.Modelo is not null && request.FabricanteId != 0)
+                return await _veiculoRepository.BucarVeiculoPorFabricanteModelo(request.Modelo, request.FabricanteId);
+
+            if (request.Modelo is not null)
+                return await _veiculoRepository.BucarVeiculoPorModelo(request.Modelo);
+
+            
+            return await _veiculoRepository.BucarVeiculoPorFabricante(request.FabricanteId);
         }
     }
 }

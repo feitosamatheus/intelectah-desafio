@@ -2,15 +2,10 @@
 using ConcessionariaApp.Application.Dtos.Concessionarias;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Application.UseCases.Concessionarias.Commands.CadastrarConcessionarias;
-using ConcessionariaApp.Application.UseCases.Concessionarias.Querys;
+using ConcessionariaApp.Application.UseCases.Concessionarias.Queries.BuscarEnderecoPorCep;
 using ConcessionariaApp.Domain.Common;
 using ConcessionariaApp.Domain.ValueObjects;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConcessionariaApp.Application.Services
 {

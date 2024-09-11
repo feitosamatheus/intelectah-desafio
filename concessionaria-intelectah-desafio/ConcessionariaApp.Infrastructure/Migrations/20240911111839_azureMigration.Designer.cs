@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcessionariaApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextApp))]
-    [Migration("20240906181554_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20240911111839_azureMigration")]
+    partial class azureMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,6 +108,11 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("NivelAcesso")
                         .HasColumnType("int");
@@ -264,25 +269,6 @@ namespace ConcessionariaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("ConcessionariaApp.Domain.Entities.Concessionaria", b =>
                 {
-                    b.OwnsOne("ConcessionariaApp.Domain.ValueObjects.Email", "Email", b1 =>
-                        {
-                            b1.Property<int>("ConcessionariaId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("EnderecoEmail")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("Email");
-
-                            b1.HasKey("ConcessionariaId");
-
-                            b1.ToTable("Concessionarias");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ConcessionariaId");
-                        });
-
                     b.OwnsOne("ConcessionariaApp.Domain.ValueObjects.Telefone", "Telefone", b1 =>
                         {
                             b1.Property<int>("ConcessionariaId")
@@ -293,6 +279,25 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                                 .HasMaxLength(15)
                                 .HasColumnType("nvarchar(15)")
                                 .HasColumnName("Telefone");
+
+                            b1.HasKey("ConcessionariaId");
+
+                            b1.ToTable("Concessionarias");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ConcessionariaId");
+                        });
+
+                    b.OwnsOne("ConcessionariaApp.Domain.ValueObjects.Email", "Email", b1 =>
+                        {
+                            b1.Property<int>("ConcessionariaId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("EnderecoEmail")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)")
+                                .HasColumnName("Email");
 
                             b1.HasKey("ConcessionariaId");
 
@@ -319,7 +324,7 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                                 .HasColumnType("nvarchar(50)")
                                 .HasColumnName("Cidade");
 
-                            b1.Property<string>("EnderecoFormatado")
+                            b1.Property<string>("EnderecoCompleto")
                                 .IsRequired()
                                 .HasMaxLength(255)
                                 .HasColumnType("nvarchar(255)")
@@ -346,31 +351,6 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Telefone")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ConcessionariaApp.Domain.Entities.Usuario", b =>
-                {
-                    b.OwnsOne("ConcessionariaApp.Domain.ValueObjects.Email", "Email", b1 =>
-                        {
-                            b1.Property<int>("UsuarioId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("EnderecoEmail")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("Email");
-
-                            b1.HasKey("UsuarioId");
-
-                            b1.ToTable("Usuarios");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UsuarioId");
-                        });
-
-                    b.Navigation("Email")
                         .IsRequired();
                 });
 

@@ -1,6 +1,7 @@
 ﻿using ConcessionariaApp.Application.Dtos.Veiculos;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Options;
 namespace ConcessionariaApp.MVC.Controllers
 {
     [Route("Veiculo")]
+    [Authorize]
     public class VeiculoController : Controller
     {
         private readonly IVeiculoService _veiculoService;
@@ -20,6 +22,7 @@ namespace ConcessionariaApp.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador, Gerente")]
         public async Task<IActionResult> Cadastrar()
         {
             var fabricantes = await _fabricanteService.ObterTodosParticipantes();
@@ -43,6 +46,7 @@ namespace ConcessionariaApp.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public async Task<IActionResult> Cadastrar([FromBody] CadastrarVeiculoDTO dto)
         {
             if (!ModelState.IsValid)

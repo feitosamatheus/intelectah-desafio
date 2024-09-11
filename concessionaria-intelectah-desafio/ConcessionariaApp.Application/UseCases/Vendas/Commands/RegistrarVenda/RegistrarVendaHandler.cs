@@ -11,11 +11,11 @@ namespace ConcessionariaApp.Application.UseCases.Vendas.Commands.RegistrarVenda
 {
     public sealed class RegistrarVendaHandler : IRequestHandler<RegistrarVendaCommand, ResultadoOperacao>
     {
-        private readonly IVendaRepository vendaRepository;
+        private readonly IVendaRepository _vendaRepository;
 
         public RegistrarVendaHandler(IVendaRepository vendaRepository)
         {
-            this.vendaRepository = vendaRepository;
+            _vendaRepository = vendaRepository;
         }
 
         public Task<ResultadoOperacao> Handle(RegistrarVendaCommand request, CancellationToken cancellationToken)

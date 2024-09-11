@@ -10,7 +10,7 @@ namespace ConcessionariaApp.Application.Interfaces
 {
     public interface IFabricanteService
     {
-        Task<ResultadoOperacao> CriarFabricante(CriarFabricanteDTO dto);
+        Task<ResultadoOperacao> CadastrarFabricante(CadastrarFabricanteDTO dto);
         Task<IEnumerable<FabricanteDTO>> ObterTodosParticipantes();
     }
 }

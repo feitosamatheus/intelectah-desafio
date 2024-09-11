@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ConcessionariaApp.Application.Dtos.Fabricantes
 {
-    public class CriarFabricanteDTO
+    public class CadastrarFabricanteDTO
     {
         [Display(Name ="Nome")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]

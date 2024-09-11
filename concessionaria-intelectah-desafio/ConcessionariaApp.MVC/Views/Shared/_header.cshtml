@@ -1,4 +1,10 @@
-﻿<link rel="stylesheet" href="~/css/layout/header.css">
+﻿@{
+    var usuarioNome = Context.User.Identity.Name;
+    var usuarioLogado = Context.User.Identity.IsAuthenticated;
+}
+
+<link rel="stylesheet" href="~/css/layout/header.css">
+
 
 <header class="container-header bg-header z-index-3">
     <section class="container-header-item">
@@ -14,33 +20,35 @@
         </a>
     </section>
     <section class="container-header-item">
-        <nav class="navbar box-shadow d-flex justify-content-end align-items-center me-4">
-            <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bi bi-three-dots hover-three"></i></button>
-            <button type="button" class="dropdown-header-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                <span class="p-1 m-0" type="button">
-                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user">
-                </span>
-            </button>
-            <ul class="dropdown-menu dropdown-header-custom">
-                <li class="d-flex justify-content-center pt-2">
-                    <img src="https://i.imgur.com/hczKIze.jpg" alt="foto do usuário" class="img-header-user-dropdown">
-                </li>
-                <li class="d-flex justify-content-center mt-1 ps-2 pe-2">
-                    <div class="d-flex justify-content-center flex-column lh-sm">
-                        <h5 class="text-center text-break">Matheus Feitosa</h5>
-                        <p>@User.Identity.Name</p>
-                    </div>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li class="text-center mb-2"> 
-                    <p>Unidade: 102-Paulista</p>
-                </li>
-                <li class="text-center btn-header-logout">
-                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="dropdown-item-custom p-1 text-light">
-                        <button type="submit" class="nav-link btn btn-link text-light w-100"><i class="bi bi-box-arrow-right me-1"></i> Sair</button>
-                    </form>
-                </li>
-            </ul>
-       </nav>
+        @if (usuarioLogado)
+        {
+            <div class="d-flex me-5">
+                <div>
+                    <a class="dropdown-item  text-light" asp-controller="Fabricante" asp-action="Listar" title="Listar Fabricante" data-page="Fabricante">
+                        @usuarioNome
+                    </a>
+                </div>
+                <div>
+                    <a class="dropdown-item  text-light" asp-controller="Login" asp-action="Logout" title="Listar Fabricante" data-page="Fabricante">
+                        Sair
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex me-5">
+                <div>
+                    <a class="dropdown-item  text-dark" asp-controller="Login" asp-action="Index" data-page="Fabricante">
+                        Entrar
+                    </a>
+                </div>
+                <div>
+                    <a class="dropdown-item  text-dark" asp-controller="Login" asp-action="Registrar" data-page="Fabricante">
+                        Registra-se
+                    </a>
+                </div>
+            </div>
+        }
     </section>
 </header>

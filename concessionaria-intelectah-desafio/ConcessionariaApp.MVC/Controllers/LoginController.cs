@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using ConcessionariaApp.Application.Dtos.Login;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConcessionariaApp.MVC.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILoginService _loginService;
@@ -44,6 +46,9 @@ namespace ConcessionariaApp.MVC.Controllers
 
         public IActionResult Registrar()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
@@ -60,11 +65,20 @@ namespace ConcessionariaApp.MVC.Controllers
                         RedirectToAction("Index", "Home") : View(usuarioResultado);
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _loginService.EncerrarSessao();
 
             return RedirectToAction("Index", "Login");
+        }
+
+        public IActionResult AcessoNegado()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
+            return View();
         }
     }
 }

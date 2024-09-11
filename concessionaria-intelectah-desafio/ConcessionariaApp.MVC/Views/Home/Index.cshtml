@@ -1,7 +1,7 @@
 ﻿@using System.Security.Claims
 @model ConcessionariaApp.Application.Dtos.Autenticacao.RegistrarUsuarioDTO
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
     var usuarioNome = Context.User.Identity.Name;
     var role = Context.User.FindFirst(ClaimTypes.Role)?.Value;
 }
