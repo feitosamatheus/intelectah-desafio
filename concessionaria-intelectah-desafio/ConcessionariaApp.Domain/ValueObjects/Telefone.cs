@@ -7,13 +7,17 @@ namespace ConcessionariaApp.Domain.ValueObjects
     {
         public string Numero { get; private set; }
 
-        public Telefone(string numero)
+        private Telefone(string numero)
         {
-            if (ValidarTelefone(numero))
-                throw new TelefoneInvalidoException("Número não informado.");
+            if (!ValidarTelefone(numero))
+                throw new TelefoneInvalidoException("Número telefone inválido.");
             Numero = numero;
         }
 
+        public static Telefone Criar(string telefone)
+        {
+            return new Telefone(telefone);
+        }
         public override bool Equals(object obj)
         {
             if (obj is not Telefone tel)
@@ -34,7 +38,9 @@ namespace ConcessionariaApp.Domain.ValueObjects
 
             tel = Regex.Replace(tel, @"\D", "");
 
-            return tel.Length == 10 || tel.Length == 11;
+            if(tel.Length == 10 || tel.Length == 11)
+                return true;
+            return false;
         }
     }
 }

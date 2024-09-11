@@ -13,7 +13,7 @@ namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands
 {
     public sealed record CadastrarVeiculoCommand(   string Modelo,
                                                     int AnoFabricacao ,
-                                                    decimal Preco ,
+                                                    string Preco ,
                                                     int FabricanteId ,
                                                     string TipoVeiculo,
                                                     string Descricao) : IRequest<ResultadoOperacao>;

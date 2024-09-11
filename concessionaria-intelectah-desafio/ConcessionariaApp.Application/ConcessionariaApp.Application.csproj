@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="UseCases\Login\Query\BuscaRoleUsuario\" />
-    <Folder Include="UseCases\Concessionarias\Commands\" />
-    <Folder Include="UseCases\Concessionarias\Querys\" />
     <Folder Include="UseCases\Veiculos\Queries\" />
   </ItemGroup>
 

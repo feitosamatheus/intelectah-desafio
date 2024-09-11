@@ -28,7 +28,7 @@ namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands
             try
             {
                 var tipoVeiculoEnum = (ETipoVeiculo)Enum.Parse(typeof(ETipoVeiculo), request.TipoVeiculo);
-                var veiculoCriado = Veiculo.Criar(request.Modelo, request.AnoFabricacao, request.Preco, request.FabricanteId, tipoVeiculoEnum, request.Descricao);
+                var veiculoCriado = Veiculo.Criar(request.Modelo, request.AnoFabricacao, decimal.Parse(request.Preco), request.FabricanteId, tipoVeiculoEnum, request.Descricao);
                 _veiculoRepository.Add(veiculoCriado);
                 await _unitOfWork.CommitAsync(cancellationToken);
                 return ResultadoOperacao.OK("Veículo cadastrado com sucesso.");

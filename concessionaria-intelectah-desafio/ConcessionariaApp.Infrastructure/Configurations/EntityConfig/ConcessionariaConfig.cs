@@ -19,7 +19,7 @@ namespace ConcessionariaApp.Infrastructure.Configurations.EntityConfig
             builder.HasIndex(c => c.Nome).HasDatabaseName("IX_Concessionaria_Nome").IsUnique();
             builder.OwnsOne(c => c.Endereco, endereco =>
             {
-                endereco.Property(e => e.EnderecoFormatado).HasColumnName("Endereco").HasMaxLength(255).IsRequired();
+                endereco.Property(e => e.EnderecoCompleto).HasColumnName("Endereco").HasMaxLength(255).IsRequired();
                 endereco.Property(e => e.Cidade).HasColumnName("Cidade").HasMaxLength(50).IsRequired();
                 endereco.Property(e => e.Estado).HasColumnName("Estado").HasMaxLength(50).IsRequired();
                 endereco.Property(e => e.Cep).HasColumnName("Cep").HasMaxLength(10).IsRequired();

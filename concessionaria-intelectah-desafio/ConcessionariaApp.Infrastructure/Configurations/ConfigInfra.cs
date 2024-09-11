@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using ConcessionariaApp.Application.Interfaces;
+using ConcessionariaApp.Infrastructure.Services;
 
 namespace ConcessionariaApp.Infrastructure.Config
 {

@@ -56,18 +56,48 @@
                 </ul>
             </div>
         </div>
-        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="Login">
+        <div>
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#concessionariaSubMenu" role="button" aria-expanded="false" aria-controls="concessionariaSubMenu" title="Concessionárias" data-page="Concessionaria">
             <span class="span-col-sidebar">
                 <i class="fa-solid fa-store icon-col-sidebar"></i>
                 <span class="desc-col-sidebar">Concessionárias</span>
             </span>
         </a>
-        <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="Registrar">
-            <span class="span-col-sidebar">
-                <i class="fa-solid fa-money-check-dollar icon-col-sidebar"></i>
-                <span class="desc-col-sidebar">Vendas</span>
-            </span>
-        </a>
+            <div class="collapse" id="concessionariaSubMenu">
+            <ul class="list-unstyled">
+                <li>
+                    <a class="dropdown-item dropdowColapseCustom" asp-controller="Concessionaria" asp-action="Cadastrar" title="Cadastrar Concessionárias" data-page="CadastarConcessionaria">
+                        <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
+                        <span class="descDropdowColapseCustom">Cadastrar Concessionárias</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item dropdowColapseCustom" asp-controller="Concessionaria" asp-action="Listar" title="Listar Concessionárias" data-page="ListarConcessionaria">
+                        <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
+                        <span class="descDropdowColapseCustom">Listar Concessionárias</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div>
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#vendaSubMenu" role="button" aria-expanded="false" aria-controls="vendaSubMenu" title="Vendas" data-page="Venda">
+                <span class="span-col-sidebar">
+                    <i class="fa-solid fa-money-check-dollar icon-col-sidebar"></i>
+                    <span class="desc-col-sidebar">Vendas</span>
+                </span>
+            </a>
+            <div class="collapse" id="vendaSubMenu">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Venda" asp-action="Registrar" title="Registrar Venda" data-page="RegistrarVenda">
+                            <i class="fa-solid fa-plus icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Nova venda</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
             <span class="span-col-sidebar">
                 <i class="fa-solid fa-database icon-col-sidebar"></i>

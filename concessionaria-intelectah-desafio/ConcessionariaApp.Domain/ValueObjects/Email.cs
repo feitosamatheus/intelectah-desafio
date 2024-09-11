@@ -5,7 +5,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
 {
     public class Email
     {
-        public int UsuarioId { get; set; }
+        //public int UsuarioId { get; set; }
         public string EnderecoEmail { get; private set; }
 
         public Email()
@@ -13,12 +13,17 @@ namespace ConcessionariaApp.Domain.ValueObjects
             
         }
 
-        public Email(string enderecoEmail)
+        private Email(string enderecoEmail)
         {
             if (!ValidarEmail(enderecoEmail))
                 throw new EmailInvalidoException();
 
             EnderecoEmail = enderecoEmail;
+        }
+
+        public static Email Criar(string enderecoEmail)
+        {
+            return new Email(enderecoEmail);
         }
 
         public override bool Equals(object obj)

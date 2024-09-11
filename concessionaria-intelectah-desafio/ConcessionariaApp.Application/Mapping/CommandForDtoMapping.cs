@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
 using ConcessionariaApp.Application.Dtos.Fabricantes;
+using ConcessionariaApp.Application.Dtos.Vendas;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
+using ConcessionariaApp.Application.UseCases.Vendas.Queries.BuscarVeiculoPorFiltroVenda;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace ConcessionariaApp.Application.Mapping
         {
             CreateMap<AutenticarUsuarioCommand, AutenticarUsuarioDTO>();
             CreateMap<RegistrarUsuarioCommand, RegistrarUsuarioDTO>();
+            CreateMap<BuscarVeiculoPorFiltroVendaQuery, VeiculoVendaDTO>();
         }
     }
 }

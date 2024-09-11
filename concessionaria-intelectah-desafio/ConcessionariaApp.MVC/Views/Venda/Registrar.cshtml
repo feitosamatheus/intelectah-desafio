@@ -1,0 +1,78 @@
+﻿@model ConcessionariaApp.Application.Dtos.Vendas.FiltroVendaDTO
+<style>
+    .btn-color-custom {
+        background-color: chocolate !important;
+        color: white;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="text-start mb-2 p-1">Buscar Veículo</h4>
+                <form class="p-2" asp-action="BuscarVeiculoPorModeloFabricante" asp-controller="Venda" id="Form" method="post">
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="Modelo" class="form-label"></label>
+                            <input asp-for="Modelo" class="form-control" maxlength="100" required placeholder="Digite o modelo" />
+                            <span asp-validation-for="Modelo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="FabricanteId" class="form-label"></label>
+                            @Html.DropDownList("FabricanteId", (IEnumerable<SelectListItem>)ViewBag.Fabricantes, "Selecione um Fabricante.", new { @class = "form-control", id = "FabricanteId" })
+                            <span asp-validation-for="FabricanteId" class="text-danger"></span>
+                        </div>
+                        <div class="col-4 mt-4 pt-2">
+                            <button type="submit" class="btn btn-color-custom col-6 text-center"><i class="fa-solid fa-magnifying-glass ms-2"></i> Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="container-html">
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script>
+    $(document).ready(function ($) {
+        $('#Form').submit(function (e) {
+            param = {
+                'Modelo': $('#Modelo').val(),
+                'FabricanteId': $('#FabricanteId').find('option:selected').prop('value'),
+            }
+            console.log(param)
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("BuscarVeiculoPorModeloFabricante", "Venda")',
+                type: 'POST',
+                data: JSON.stringify(param),
+                dataType: "html",
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                if (response != null) {
+                    $('#container-html').empty();
+                    $('#container-html').html(response);
+                    RemoverLoading()
+                } else {
+                    RemoverLoading()
+                    MenssageAlerta(response.menssagem)
+                }
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false
+        });
+    });
+</script>

@@ -20,7 +20,7 @@ namespace ConcessionariaApp.Infrastructure.Configurations.EntityConfig
             builder.Property(e => e.Email)
                   .HasConversion(
                       v => v.EnderecoEmail,       
-                      v => new Email(v))
+                      v => Email.Criar(v))
                   .HasMaxLength(100)
                   .IsRequired();
 

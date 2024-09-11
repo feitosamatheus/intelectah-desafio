@@ -1,0 +1,205 @@
+﻿@model ConcessionariaApp.Application.Dtos.Concessionarias.CadastrarConcessionariaDTO
+<style>
+    .validation-summary-errors {
+        background: #ff00003d;
+        border-radius: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .validation-summary-errors ul {
+            padding: 10px;
+        }
+
+        .validation-summary-errors li {
+            list-style: none;
+        }
+
+    .btn-color-custom {
+        background-color: chocolate !important;
+        color: white;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="text-start mb-2 p-1">Adicionar Concessionária</h4>
+                <form class="p-2" asp-action="Cadastrar" asp-controller="Concessionaria" id="Form" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "summary-custom" })
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="mb-2 col-12">
+                            <label asp-for="Nome" class="form-label"></label>
+                            <input asp-for="Nome" class="form-control" maxlength="100" placeholder="Digite seu nome" required />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-3">
+                            <label asp-for="CEP" class="form-label"></label>
+                            <input asp-for="CEP" class="form-control" maxlength="100" placeholder="Digite o CEP" />
+                            <span asp-validation-for="CEP" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3 d-none" id="div-rua">
+                            <label asp-for="EnderecoCompleto" class="form-label"></label>
+                            <input asp-for="EnderecoCompleto" class="form-control" placeholder="Digite a rua" />
+                            <span asp-validation-for="EnderecoCompleto" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3 d-none" id="div-cidade">
+                            <label asp-for="Cidade" class="form-label"></label>
+                            <input asp-for="Cidade" class="form-control" placeholder="Digite a cidade" />
+                            <span asp-validation-for="Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3 d-none" id="div-estado">
+                            <label asp-for="Estado" class="form-label"></label>
+                            <input asp-for="Estado" class="form-control" placeholder="Digite o estado" />
+                            <span asp-validation-for="Estado" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="Telefone" class="form-label"></label>
+                            <input asp-for="Telefone" class="form-control" placeholder="(00) 00000-0000" />
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="CapacidadeMaxima" class="form-label"></label>
+                            <input asp-for="CapacidadeMaxima" class="form-control" type="number" placeholder="Digite a capacidade máxima" />
+                            <span asp-validation-for="CapacidadeMaxima" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-4 text-end">
+                            <button type="submit" class="btn btn-color-custom col-6 text-center ">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script>
+    $(document).ready(function ($) {
+        $('#Telefone').mask('(00) 00000-0000');
+        $('#CEP').mask('00000-000');
+
+        $('#Form').submit(function (e) {
+            param = {
+                'Nome': $('#Nome').val(),
+                'CEP': $('#CEP').val(),
+                'EnderecoCompleto': $('#EnderecoCompleto').val(),
+                'Cidade': $('#Cidade').val(),
+                'Estado': $('#Estado').val(),
+                'Telefone': $('#Telefone').val().replace(/\s+/g, ''),
+                'Email': $('#Email').val(),
+                'CapacidadeMaxima': $('#CapacidadeMaxima').val()
+            }
+
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("Cadastrar", "Concessionaria")',
+                type: 'POST',
+                data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                if (response.sucesso) {
+                    $('.summary-custom').empty();
+                    $('#Form')[0].reset();
+                    RemoverLoading()
+                    MenssagemSucesso(response.menssagem)
+                } else {
+                    updateValidationSummary(response.menssagem)
+                    RemoverLoading()
+                    MenssageAlerta(response.menssagem)
+                }
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false
+        });
+    
+        $("#CEP").change(function (e) {
+
+            cep = $('#CEP').val()
+            
+
+            $.ajax({
+                url: '@Url.Action("BuscarEnderecoPorCep", "Concessionaria")',
+                type: 'GET',
+                dataType: "json",
+                data: { cep: cep },
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                if(response.sucesso){
+                    console.log(response)
+                    $('#EnderecoCompleto').val(response.obj.enderecoCompleto)
+                    $('#Estado').val(response.obj.estado)
+                    $('#Cidade').val(response.obj.cidade)
+
+                    RemoverLoading()
+
+                    $('#div-rua').removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                    $('#div-estado').removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                    $('#div-cidade').removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                }
+                else
+                {
+                    MenssagemErro("Não foi possível prosseguir com a solicitação.");
+                }
+
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+
+        
+        })
+    });
+
+    // function applyMask(input) {
+    //     const value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    //     if (value.length <= 10) {
+    //         input.value = value
+    //             .replace(/(\d{2})(\d{0,4})/, '($1) $2')
+    //             .replace(/(\d{4})(\d{0,4})/, '$1-$2');
+    //     } else {
+    //         input.value = value
+    //             .replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+    //     }
+    // }
+
+    // // Associa a função ao evento input
+    // document.getElementById('Telefone').addEventListener('input', function () {
+    //     applyMask(this);
+    // });
+
+    function updateValidationSummary(message) {
+        $('.summary-custom').empty();
+        $('.summary-custom').append('<ul><li>' + message + '</li></ul>');
+    }
+</script>

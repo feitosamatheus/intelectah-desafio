@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="mb-2 col-4">
                             <label asp-for="Modelo" class="form-label"></label>
-                            <input asp-for="Modelo" class="form-control" maxlength="100" required />
+                            <input asp-for="Modelo" class="form-control" maxlength="100" required placeholder="Digite o modelo" />
                             <span asp-validation-for="Modelo" class="text-danger"></span>
                         </div>
                         <div class="mb-2 col-4">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="mb-2 col-4">
                             <label asp-for="Preco" class="form-label"></label>
-                            <input asp-for="Preco" class="form-control" type="number" step="0.01" name="quantity" min="0.01" />
+                            <input asp-for="Preco" class="form-control" placeholder="Digite o preço" />
                             <span asp-validation-for="Preco" class="text-danger"></span>
                         </div>
                     </div>
@@ -60,14 +60,15 @@
                         </div>
                         <div class="mb-2 col-4">
                             <label asp-for="Descricao" class="form-label"></label>
-                            <input asp-for="Descricao" class="form-control" />
+                            <input asp-for="Descricao" class="form-control" placeholder="Digite uma descrição" />
                         </div>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-4 text-end">
-                            <button type="submit" class="btn btn-color-custom col-6 text-center ">Salvar</button>
+                            <button type="submit" class="btn btn-color-custom col-6 text-center">Salvar</button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -77,9 +78,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function ($) {
+        $('#Preco').mask('000.000.000.000.000,00', { reverse: true });
+
         $('#preco').on('input', function () {
             // Remove caracteres não numéricos
             var valor = $(this).val().replace(/[^0-9,]/g, '');
@@ -96,10 +100,13 @@
             }
         });
         $('#Form').submit(function (e) {
+            var preco = $('#Preco').val().replace(/[^\w\s]|_/g, '')
+            preco = preco.replace(/\s+/g, '')
+
             param = {
                 'Modelo': $('#Modelo').val(),
                 'AnoFabricacao': $('#AnoFabricacao').find('option:selected').prop('value'),
-                'Preco': parseInt($('#Preco').val(), 10),
+                'Preco': preco,
                 'FabricanteId': $('#FabricanteId').find('option:selected').prop('value'),
                 'TipoVeiculo': $('#TipoVeiculo option:selected').text(),
                 'Descricao': $('#Descricao').val()

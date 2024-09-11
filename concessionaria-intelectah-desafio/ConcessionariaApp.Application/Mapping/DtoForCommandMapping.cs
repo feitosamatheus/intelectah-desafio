@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Autenticacao;
+using ConcessionariaApp.Application.Dtos.Concessionarias;
 using ConcessionariaApp.Application.Dtos.Fabricantes;
 using ConcessionariaApp.Application.Dtos.Veiculos;
+using ConcessionariaApp.Application.Dtos.Vendas;
+using ConcessionariaApp.Application.UseCases.Concessionarias.Commands.CadastrarConcessionarias;
 using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CriarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
 using ConcessionariaApp.Application.UseCases.Veiculos.Commands;
+using ConcessionariaApp.Application.UseCases.Vendas.Commands.RegistrarVenda;
+using ConcessionariaApp.Application.UseCases.Vendas.Queries.BuscarVeiculoPorFiltroVenda;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +32,9 @@ namespace ConcessionariaApp.Application.Mapping
 
             CreateMap<CriarFabricanteDTO, CriarFabricanteCommand>();
             CreateMap<CadastrarVeiculoDTO, CadastrarVeiculoCommand>();
+            CreateMap<CadastrarConcessionariaDTO, CadastrarConcessionariaCommand>();
+            CreateMap<RegistrarVendaDTO, RegistrarVendaCommand>();
+            CreateMap<FiltroVendaDTO, BuscarVeiculoPorFiltroVendaQuery>();
 
         }
     }
