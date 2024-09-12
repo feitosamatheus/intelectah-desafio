@@ -29,9 +29,10 @@ namespace ConcessionariaApp.Domain.Entities
             if (string.IsNullOrWhiteSpace(emailEndereco))
                 throw new ArgumentException("O endereço de email não pode ser vazio.");
 
-            var email = Email.Criar(emailEndereco); 
+            var email = Email.Criar(emailEndereco);
+            var nomeCompleto = nomeUsuario + " " + sobrenome;
 
-            return new Usuario(nomeUsuario, senha, email,nivelAcesso);
+            return new Usuario(nomeCompleto, senha, email,nivelAcesso);
         }
 
         public void AtualizarSenha(string senha)

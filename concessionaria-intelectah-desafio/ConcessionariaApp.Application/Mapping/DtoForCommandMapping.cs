@@ -8,7 +8,7 @@ using ConcessionariaApp.Application.UseCases.Concessionarias.Commands.CadastrarC
 using ConcessionariaApp.Application.UseCases.Fabricantes.Commands.CadastrarFabricante;
 using ConcessionariaApp.Application.UseCases.Login.Command.AutenticarUsuario;
 using ConcessionariaApp.Application.UseCases.Login.Command.RegistrarUsuario;
-using ConcessionariaApp.Application.UseCases.Veiculos.Commands;
+using ConcessionariaApp.Application.UseCases.Veiculos.Commands.CadastrarVeiculo;
 using ConcessionariaApp.Application.UseCases.Vendas.Commands.RegistrarVenda;
 using ConcessionariaApp.Application.UseCases.Vendas.Queries.BuscarVeiculoPorFiltroVenda;
 using System;

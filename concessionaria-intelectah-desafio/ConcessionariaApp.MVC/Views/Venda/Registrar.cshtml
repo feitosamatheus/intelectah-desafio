@@ -1,4 +1,4 @@
-﻿@model ConcessionariaApp.Application.Dtos.Vendas.FiltroVendaDTO
+﻿@model ConcessionariaApp.Application.Dtos.Vendas.FiltroVendaDTO 
 @{
     ViewData["Title"] = "Venda";
 }
@@ -9,34 +9,113 @@
     }
 </style>
 
-<div class="container d-flex justify-content-center align-items-center mt-3">
-    <div class="col-md-12">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h4 class="text-start">Buscar Veículo</h4>
-                <form class="" asp-action="BuscarVeiculoPorModeloFabricante" asp-controller="Venda" id="Form" method="post">
+<form asp-asp-controller="Venda" asp-action="RegistrarVenda" id="form">
+    @Html.AntiForgeryToken()
+    <div class="container d-flex justify-content-center align-items-center mt-3">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-start mb-2">Buscar Veículo</h5>
                     <div class="row">
                         <div class="mb-2 col-4">
+                            <label for="FiltroVeiculo" class="form-label">Filtrar por</label>
+                            @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.FiltroVeiculo, "Selecione um filtro", new { @class = "form-control", id = "FiltroVeiculo" })
+                        </div>
+                        <div class="mb-2 col-4 d-none" id="modelo-box">
                             <label asp-for="Modelo" class="form-label"></label>
                             <input asp-for="Modelo" class="form-control" maxlength="100" required placeholder="Digite o modelo" />
                             <span asp-validation-for="Modelo" class="text-danger"></span>
                         </div>
-                        <div class="mb-2 col-4">
+                        <div class="mb-2 col-4 d-none" id="fabricante-box">
                             <label asp-for="FabricanteId" class="form-label"></label>
-                            @Html.DropDownList("FabricanteId", (IEnumerable<SelectListItem>)ViewBag.Fabricantes, "Selecione um Fabricante.", new { @class = "form-control", id = "FabricanteId" })
+                            @Html.DropDownList("FabricanteId", (IEnumerable<SelectListItem>)ViewBag.Fabricantes, "Selecione um Fabricante", new { @class = "form-control", id = "FabricanteId" })
                             <span asp-validation-for="FabricanteId" class="text-danger"></span>
                         </div>
-                        <div class="col-4 mt-4 pt-2">
-                            <button type="submit" class="btn btn-color-custom col-6 text-center"><i class="fa-solid fa-magnifying-glass ms-2"></i> Buscar</button>
-                        </div>
+                        <div class="mb-2 col-4 d-none" id="veiculos-box"></div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div id="container-html">
+    <div class="container d-flex justify-content-center align-items-center mt-3">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-start mb-2">Buscar Concessionária</h5>
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label for="FiltroConcessionaria" class="form-label">Filtrar por</label>
+                            @Html.DropDownList("Value", (IEnumerable<SelectListItem>)ViewBag.FiltroConcessionaria, "Selecione um filtro", new { @class = "form-control", id = "FiltroConcessionaria" })
+                        </div>
+                        <div class="mb-2 col-4 d-none" id="nomeConcessionaria-box">
+                            <label asp-for="NomeConcessionaria" class="form-label"></label>
+                            <input asp-for="NomeConcessionaria" class="form-control" maxlength="100" placeholder="Digite o nome" />
+                            <span asp-validation-for="NomeConcessionaria" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4 d-none" id="localizacao-box">
+                            <label asp-for="LocalizacaoConcessionaria" class="form-label"></label>
+                            <input asp-for="LocalizacaoConcessionaria" class="form-control" maxlength="100" placeholder="Digite a localização" />
+                            <span asp-validation-for="LocalizacaoConcessionaria" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4 d-none" id="concessionaria-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center mt-3">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-start mb-2">Dados do cliente</h5>
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="NomeCliente" class="form-label"></label>
+                            <input asp-for="NomeCliente" class="form-control" maxlength="100" placeholder="Digite o nome" />
+                            <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="CPF" class="form-label"></label>
+                            <input asp-for="CPF" class="form-control" maxlength="100" placeholder="000.000.000-00" />
+                            <span asp-validation-for="CPF" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="TelefoneCliente" class="form-label"></label>
+                            <input asp-for="TelefoneCliente" class="form-control" maxlength="100" placeholder="(00) 00000-0000" />
+                            <span asp-validation-for="TelefoneCliente" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center mt-3">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-start mb-2">Detalhes da compra</h5>
+                    <div class="row">
+                        <div class="mb-2 col-4">
+                            <label asp-for="DataVenda" class="form-label"></label>
+                            <input asp-for="DataVenda" class="form-control" maxlength="100" placeholder="dd/mm/aaaa" type="data"/>
+                            <span asp-validation-for="DataVenda" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4">
+                            <label asp-for="ValorVenda" class="form-label"></label>
+                            <input asp-for="ValorVenda" class="form-control" maxlength="100" placeholder="Digite o valor"/>
+                            <span asp-validation-for="ValorVenda" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-4 d-flex justify-content-end align-items-end">
+                            <div class="col-6 text-end">
+                                <button type="submit" class="btn btn-color-custom col-12 text-center" id="btn-registra-venda">Registrar venda</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
@@ -46,40 +125,208 @@
 
 <script>
     $(document).ready(function ($) {
-        $('#Form').submit(function (e) {
-            param = {
-                'Modelo': $('#Modelo').val(),
-                'FabricanteId': $('#FabricanteId').find('option:selected').prop('value'),
-            }
+        $('#CPF').mask('000.000.000-00');
+        $('#TelefoneCliente').mask('(00) 00000-0000');
+        $('#DataVenda').mask('00/00/0000');
+        $('#ValorVenda').mask('000.000.000.000.000,00', { reverse: true });
 
-            if (!$('#Modelo').val() != "" || !$('#FabricanteId').find('option:selected').prop('value') != "")
+        $("#FiltroVeiculo").change(()=>{
+            modelo = $("#modelo-box");
+            fabricante = $("#fabricante-box");
+            veiculo = $("#veiculos-box");
+            opcaoSelecionada = $("#FiltroVeiculo option:selected").val()
+
+            
+            if (opcaoSelecionada == "Modelo")
             {
-                MenssageAlerta("Informe um Modelo ou selecione um Fabricante.")
-                return false;
+                modelo.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
             }
+            else if(opcaoSelecionada == "Fabricante")
+            {
+                fabricante.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            }
+            else
+            {
+                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            }
+        })
+        
+        $("#FiltroConcessionaria").change(() => {
+            nome = $("#nomeConcessionaria-box");
+            localizacao = $("#localizacao-box");
+            concessionaria = $("#concessionaria-box");
+            opcaoSelecionada = $("#FiltroConcessionaria option:selected").val()
 
-            console.log(param)
-            e.preventDefault();
+            
+            if (opcaoSelecionada == "Localizacao")
+            {
+                localizacao.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                nome.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            }
+            else if(opcaoSelecionada == "Nome")
+            {
+                nome.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            }
+            else
+            {
+                nome.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            }
+        })
+
+        $("#Modelo").change(() => {
+            if ($("#Modelo").val() == "")
+                return false;
+
+            parametro = { 'modelo': $("#Modelo").val() }
+            gerarSelectVeiculo(parametro, '@Url.Action("BuscarVeiculoPorModelo", "Venda")')
+        });
+
+        $("#FabricanteId").change(() => {
+            if ($("#FabricanteId option:selected").val() == "")
+                return false;
+
+            parametro = { 'fabricanteId': $("#FabricanteId option:selected").val() }
+            gerarSelectVeiculo(parametro, '@Url.Action("BuscarVeiculoPoFabricante", "Venda")')
+        });
+
+        $("#NomeConcessionaria").change(() => {
+            if ($("#NomeConcessionaria").val() == "")
+                return false;
+
+            parametro = { 'nome': $("#NomeConcessionaria").val() }
+            gerarSelectConcessionaria(parametro, '@Url.Action("BuscarConcessionariaPorNome", "Venda")')
+        });
+
+        $("#LocalizacaoConcessionaria").change(() => {
+            if ($("#LocalizacaoConcessionaria").val() == "")
+                return false;
+
+            parametro = { 'localizacao': $("#LocalizacaoConcessionaria").val() }
+            gerarSelectConcessionaria(parametro, '@Url.Action("BuscarConcessionariaPorLocalizacao", "Venda")')
+        });
+
+        function gerarSelectVeiculo(parametro, url) {
             $.ajax({
-                url: '@Url.Action("BuscarVeiculoPorModeloFabricante", "Venda")',
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                data: parametro
+            }).done((data) => {
+                    
+                var label = $('<label for="VeiculoId" class="form-label">Veículo</label>');
+                var select = $('<select class="form-control" id="VeiculoId" required placeholder="Selecione uma concessionária"></select>');
+                var validation = $('<span asp-validation-for="VeiculoId" class="text-danger"></span>');
+                var container = $("#veiculos-box");
+                container.empty();
+                if (data.length > 0) {
+                    var optionSelected = $('<option>Selecione um veículo</option>');
+                    select.append(optionSelected)
+                    $.each(data, function (index, item) {
+                        var option = $('<option></option>').val(item.id).text(item.modelo);
+                        select.append(option);
+                    });
+                }
+                else 
+                { 
+                    var option = $('<option></option>').val("").text("Veículo não encontrado");
+                    select.append(option);
+                }
+                container.html(label.prop('outerHTML') + select.prop('outerHTML') + validation.prop('outerHTML'));
+                container.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+
+            }).fail((error) => {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+        }
+
+        function gerarSelectConcessionaria(parametro, url) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                data: parametro
+            }).done((data) => {
+
+                var label = $('<label for="ConcessionariaId" class="form-label">Concessionária</label>');
+                var select = $('<select class="form-control" id="ConcessionariaId" required placeholder="Selecione uma concessionária"></select>');
+                var validation = $('<span asp-validation-for="ConcessionariaId" class="text-danger"></span>');
+                var container = $("#concessionaria-box");
+                container.empty();
+                if (data.length > 0) {
+                    var optionSelected = $('<option>Selecione uma concessionária</option>');
+                    select.append(optionSelected)
+                    $.each(data, function (index, item) {
+                        var option = $('<option></option>').val(item.id).text(item.nome);
+                        select.append(option);
+                    });
+                }
+                else {
+                    var option = $('<option></option>').val("").text("Concessionária não encontrada");
+                    select.append(option);
+                }
+                container.html(label.prop('outerHTML') + select.prop('outerHTML') + validation.prop('outerHTML'));
+                container.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+
+            }).fail((error) => {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+        }
+
+        $('#form').submit(function (e) {
+            $("#form").validate();
+            e.preventDefault();
+
+            var valor = $('#ValorVenda').val().replace(/[^\w\s]|_/g, '')
+            valor = valor.replace(/\s+/g, '')
+
+            param = {
+                'VeiculoId': $('#VeiculoId option:selected').val(),
+                'ConcessionariaId': $('#ConcessionariaId option:selected').val(),
+                'NomeCliente': $('#NomeCliente').val(),
+                'CPF': $('#CPF').val(),
+                'TelefoneCliente': $('#TelefoneCliente').val(),
+                'DataVenda': $('#DataVenda').val(),
+                'ValorVenda': valor
+            }
+            console.log(param)
+
+
+
+            $.ajax({
+                url: '@Url.Action("RegistrarVenda", "Venda")',
                 type: 'POST',
                 data: JSON.stringify(param),
                 contentType: "application/json; charset=utf-8",
-                dataType: "htmL",
+                dataType: "json",
+                headers: {
+                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                },
                 beforeSend: () => {
                     AdicionarLoading()
                 }
             }).done(function (response) {
                 console.log(response)
-                if (response != null) {
-                    $('#container-html').empty();
-                    $('#container-html').html(response);
+                if (response.sucesso) {
+                    MenssagemSucesso(`Venda registrada com sucesso. Protocolo ${response.menssagem}`)
                     RemoverLoading()
                 } else {
                     RemoverLoading()
                     MenssageAlerta(response.menssagem)
                 }
-            }).fail(function (jqXHR, textStatus, msg) {
+            }).fail((error) => {
                 RemoverLoading()
                 MenssagemErro("Não foi possível prosseguir com a solicitação.");
             });

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands
+namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands.CadastrarVeiculo
 {
     public class CadastrarVeiculoHandler : IRequestHandler<CadastrarVeiculoCommand, ResultadoOperacao>
     {

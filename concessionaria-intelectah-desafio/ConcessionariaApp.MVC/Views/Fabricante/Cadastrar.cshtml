@@ -29,7 +29,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h4 class="text-start mb-2 p-1">Adicionar Fabricante</h4>
-                <form class="p-2" asp-action="Cadastrar" asp-controller="Concessionaria" id="Form" method="post">
+                <form class="p-2" asp-action="CadastrarFabricante" asp-controller="Concessionaria" id="Form" method="post">
                     @Html.ValidationSummary(true, "", new { @class = "summary-custom" })
                     @Html.AntiForgeryToken()
                     <div class="row">
@@ -72,19 +72,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function ($) {
         
-        $('#registroForm').submit(function (e) {
+        $('#Form').submit(function (e) {
             param = {
                 'Nome': $('#Nome').val(),
                 'PaisOrigem': $('#PaisOrigem').val(),
                 'AnoFundacao': parseInt($('#AnoFundacao').val(), 10),
                 'WebSite': $('#WebSite').val(),
             }
-
+            if(!$("#Form").valid()){
+                return false
+            }
             e.preventDefault(); 
             $.ajax({
-                url: '@Url.Action("Criar", "Fabricante")', 
+                url: '@Url.Action("CadastrarFabricante", "Fabricante")',
                 type: 'POST',
                 data: JSON.stringify(param),
                 contentType: "application/json; charset=utf-8",
@@ -99,7 +101,7 @@
                 console.log(response)
                 if (response.sucesso) {
                     $('.summary-custom').empty();
-                    $('#registroForm')[0].reset(); 
+                    $('#Form')[0].reset();
                     RemoverLoading()
                     MenssagemSucesso(response.menssagem)
                 } else {

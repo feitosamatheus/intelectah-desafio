@@ -31,7 +31,7 @@ namespace ConcessionariaApp.MVC.Controllers
                 return Json(new
                 {
                     sucesso = false,
-                    menssagem = "Verifique se todos os campos foram preenchidos."
+                    menssagem = "Verifique se todos os campos foram preenchidos. Lembrando ano tem que ser maior que 1855."
                 });
 
             var resultadoCriacao = await _fabricanteService.CadastrarFabricante(dto);

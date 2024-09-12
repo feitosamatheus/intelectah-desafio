@@ -6,25 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ConcessionariaApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class azureMigration : Migration
+    public partial class newmigration2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Clientes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<int>(type: "int", maxLength: 100, nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("ClienteId", x => x.Id);
-                });
+
+            migrationBuilder.Sql(@"
+    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Clientes]') AND type in (N'U'))
+    BEGIN
+        CREATE TABLE [Clientes] (
+            [Id] int NOT NULL IDENTITY,
+            [Nome] nvarchar(100) NOT NULL,
+            [CPF] nvarchar(11) NULL,
+            [Telefone] nvarchar(15) NULL,
+            CONSTRAINT [ClienteId] PRIMARY KEY ([Id])
+        );
+    END
+");
+           
 
             migrationBuilder.CreateTable(
                 name: "Concessionarias",
@@ -33,12 +33,12 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Cidade = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Cep = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Endereco = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Telefone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Cidade = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Cep = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Endereco = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Telefone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     CapacidadeMaximaVeiculos = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -89,7 +89,7 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                     Preco = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     FabricanteId = table.Column<int>(type: "int", nullable: false),
                     TipoVeiculo = table.Column<int>(type: "int", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -142,7 +142,8 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                 name: "IX_Cliente_CPF",
                 table: "Clientes",
                 column: "CPF",
-                unique: true);
+                unique: true,
+                filter: "[CPF] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Concessionaria_Nome",

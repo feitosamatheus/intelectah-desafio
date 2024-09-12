@@ -8,15 +8,22 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h3 class="text-center mb-4">Login</h3>
+                @if (ViewBag.Error is not null)
+                {
+                    <div class="col-12 mb-2">
+                        <span class="text-danger">@ViewBag.Error</span>
+                    </div>
+                }
                 <form asp-action="Index" method="post">
+                    @Html.ValidationSummary(false, "", new { @class = "summary-custom" })
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label">Email</label>
-                        <input asp-for="Email" type="email" class="form-control" placeholder="Digite seu email" value="Email">
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Digite seu email" value="@Model.Email">
                         <span asp-validation-for="Email"></span>
                     </div>
                     <div class="mb-3">
                         <label asp-for="Senha" class="form-label">Senha</label>
-                        <input input asp-for="Senha" type="password" class="form-control" placeholder="Digite sua senha">
+                        <input input asp-for="Senha" type="password" class="form-control" placeholder="Digite sua senha" value="@Model.Senha">
                         <span asp-validation-for="Senha"></span>
                     </div>
                     <div class="d-grid">

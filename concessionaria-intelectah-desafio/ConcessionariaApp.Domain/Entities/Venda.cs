@@ -17,19 +17,38 @@ namespace ConcessionariaApp.Domain.Entities
         public Cliente Cliente { get; private set; }
 
         public Venda(){}
-        public Venda(int veiculoId, int concessionariaId, int clienteId, DateTime dataVenda, decimal precoVenda, string protocoloVenda)
+        private Venda(Veiculo veiculo, Concessionaria concessionaria, int clienteId, DateTime dataVenda, decimal precoVenda, string protocolo)
         {
             if(dataVenda > DateTime.Now)
                 throw new ArgumentOutOfRangeException(nameof(DataVenda), "A data da venda não pode ser no futuro.");
             if(PrecoVenda < 0 )
                 throw new ArgumentOutOfRangeException(nameof(PrecoVenda), "O preço não pode ser negativo.");
+            if (PrecoVenda > veiculo.Preco)
+                throw new ArgumentOutOfRangeException(nameof(PrecoVenda), "O preço da venda não pode ser maior que do veículo.");
 
-            VeiculoId = veiculoId;
-            ConcessionariaId = concessionariaId;
+            VeiculoId = veiculo.Id;
+            ConcessionariaId = concessionaria.Id;
             ClienteId = clienteId;
             DataVenda = dataVenda;
             PrecoVenda = precoVenda;
-            ProtocoloVenda = protocoloVenda;
+            ProtocoloVenda = protocolo;
         }
+        
+        public static Venda Criar(Veiculo veiculo, Concessionaria concessionaria, int clienteId, DateTime dataVenda, decimal precoVenda)
+        {
+
+
+            return new Venda(veiculo, concessionaria, clienteId, dataVenda, precoVenda, "Em construção");
+        }
+
+        public void GerarProtocolo()
+        {
+            var anoAtual = DateTime.Now.Year;
+            var padraoNumero = "VE"+ anoAtual+ "00000000000000";
+            var idLength = Id.ToString().Length;
+
+            ProtocoloVenda = padraoNumero.Substring(0, padraoNumero.Length - idLength) + Id;
+        }
+
     }
 }

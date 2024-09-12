@@ -9,3 +9,19 @@
 .z-index-1 {
     z-index: 1001 !important;
 }
+
+.validation-summary-errors {
+    background: #ff00003d;
+    border-radius: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .validation-summary-errors ul {
+        padding: 10px;
+    }
+
+    .validation-summary-errors li {
+        list-style: none;
+    }

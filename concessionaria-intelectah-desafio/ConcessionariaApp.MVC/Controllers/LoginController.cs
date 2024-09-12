@@ -26,7 +26,7 @@ namespace ConcessionariaApp.MVC.Controllers
             if(HttpContext.User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
-            return View();
+            return View(new AutenticarUsuarioDTO());
         }
 
         [HttpPost]
@@ -41,6 +41,7 @@ namespace ConcessionariaApp.MVC.Controllers
             if(usuarioResultado.Sucesso)
                 return RedirectToAction("Index", "Home");
 
+            ViewBag.Error = "Usuario e/ou senha estão incorretos.";
             return View(dto);
         }
 
@@ -49,7 +50,7 @@ namespace ConcessionariaApp.MVC.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
-            return View();
+            return View(new RegistrarUsuarioDTO());
         }
 
         [HttpPost]
@@ -61,8 +62,15 @@ namespace ConcessionariaApp.MVC.Controllers
 
             var usuarioResultado = await _loginService.Registrar(dto);
 
-            return usuarioResultado.Sucesso ?
-                        RedirectToAction("Index", "Home") : View(usuarioResultado);
+            if (usuarioResultado.Sucesso)
+            {
+                RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Error = usuarioResultado.Menssagem;
+
+            return View(usuarioResultado);
+        
         }
 
         [Authorize]

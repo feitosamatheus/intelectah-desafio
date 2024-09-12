@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="UseCases\Login\Queries\BuscaRoleUsuario\" />
-    <Folder Include="UseCases\Veiculos\Commands\NovaPasta\" />
-    <Folder Include="UseCases\Veiculos\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -86,22 +86,11 @@
     $(document).ready(function ($) {
         $('#Preco').mask('000.000.000.000.000,00', { reverse: true });
 
-        $('#preco').on('input', function () {
-            // Remove caracteres não numéricos
-            var valor = $(this).val().replace(/[^0-9,]/g, '');
-
-            // Substitui a vírgula por ponto para conversão
-            valor = valor.replace(',', '.');
-
-            // Converte o valor para número
-            var numero = parseFloat(valor);
-
-            // Formata o número e atualiza o campo
-            if (!isNaN(numero)) {
-                $(this).val(numeroParaReal(numero));
-            }
-        });
         $('#Form').submit(function (e) {
+            if(!$("#Form").valid()){
+                return false
+            }
+
             var preco = $('#Preco').val().replace(/[^\w\s]|_/g, '')
             preco = preco.replace(/\s+/g, '')
 
@@ -113,7 +102,7 @@
                 'TipoVeiculo': $('#TipoVeiculo option:selected').text(),
                 'Descricao': $('#Descricao').val()
             }
-            console.log(param)
+
             e.preventDefault();
             $.ajax({
                 url: '@Url.Action("Cadastrar", "Veiculo")',

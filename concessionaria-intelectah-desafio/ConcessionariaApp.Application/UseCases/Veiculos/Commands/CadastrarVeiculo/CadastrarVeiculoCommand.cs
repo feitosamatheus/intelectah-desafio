@@ -9,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands
+namespace ConcessionariaApp.Application.UseCases.Veiculos.Commands.CadastrarVeiculo
 {
-    public sealed record CadastrarVeiculoCommand(   string Modelo,
-                                                    int AnoFabricacao ,
-                                                    string Preco ,
-                                                    int FabricanteId ,
+    public sealed record CadastrarVeiculoCommand(string Modelo,
+                                                    int AnoFabricacao,
+                                                    string Preco,
+                                                    int FabricanteId,
                                                     string TipoVeiculo,
                                                     string Descricao) : IRequest<ResultadoOperacao>;
 }

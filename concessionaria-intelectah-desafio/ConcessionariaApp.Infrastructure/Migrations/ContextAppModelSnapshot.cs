@@ -30,9 +30,10 @@ namespace ConcessionariaApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Nome")
+                    b.Property<string>("Nome")
+                        .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id")
                         .HasName("ClienteId");
@@ -142,7 +143,6 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FabricanteId")
@@ -249,7 +249,8 @@ namespace ConcessionariaApp.Infrastructure.Migrations
 
                             b1.HasIndex("Numero")
                                 .IsUnique()
-                                .HasDatabaseName("IX_Cliente_CPF");
+                                .HasDatabaseName("IX_Cliente_CPF")
+                                .HasFilter("[CPF] IS NOT NULL");
 
                             b1.ToTable("Clientes");
 
@@ -257,11 +258,9 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                                 .HasForeignKey("ClienteId");
                         });
 
-                    b.Navigation("Cpf")
-                        .IsRequired();
+                    b.Navigation("Cpf");
 
-                    b.Navigation("Telefone")
-                        .IsRequired();
+                    b.Navigation("Telefone");
                 });
 
             modelBuilder.Entity("ConcessionariaApp.Domain.Entities.Concessionaria", b =>
@@ -341,14 +340,11 @@ namespace ConcessionariaApp.Infrastructure.Migrations
                                 .HasForeignKey("ConcessionariaId");
                         });
 
-                    b.Navigation("Email")
-                        .IsRequired();
+                    b.Navigation("Email");
 
-                    b.Navigation("Endereco")
-                        .IsRequired();
+                    b.Navigation("Endereco");
 
-                    b.Navigation("Telefone")
-                        .IsRequired();
+                    b.Navigation("Telefone");
                 });
 
             modelBuilder.Entity("ConcessionariaApp.Domain.Entities.Veiculo", b =>

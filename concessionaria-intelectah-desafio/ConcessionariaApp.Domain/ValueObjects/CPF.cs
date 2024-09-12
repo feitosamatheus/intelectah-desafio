@@ -7,12 +7,17 @@ namespace ConcessionariaApp.Domain.ValueObjects
     {
         public string Numero { get; }
 
-        public CPF(string numero)
+        private CPF(string numero)
         {
             if (ValidarCpf(numero))
                 throw new CpfInvalidoException();
             
             Numero = RemoverMascara(numero);
+        }
+
+        public static CPF Criar(string numero)
+        {
+            return new CPF(numero);
         }
 
         public override bool Equals(object obj)
