@@ -10,7 +10,6 @@ namespace ConcessionariaApp.Application.Interfaces
 {
     public interface IVendaService
     {
-        Task<IEnumerable<VeiculoVendaDTO>> BuscarVeiculoPorFiltro(FiltroVendaDTO dto);
         Task<ResultadoOperacao> RegistrarVenda(RegistrarVendaDTO dto);
     }
 }

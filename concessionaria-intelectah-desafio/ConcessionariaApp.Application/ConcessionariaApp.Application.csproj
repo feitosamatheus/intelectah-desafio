@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="UseCases\Login\Queries\BuscaRoleUsuario\" />
+    <Folder Include="UseCases\Vendas\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

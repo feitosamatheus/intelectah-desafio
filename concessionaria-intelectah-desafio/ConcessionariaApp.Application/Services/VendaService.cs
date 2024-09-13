@@ -24,13 +24,6 @@ namespace ConcessionariaApp.Application.Services
             _mediator = mediator;
         }
 
-        public async Task<IEnumerable<VeiculoVendaDTO>> BuscarVeiculoPorFiltro(FiltroVendaDTO dto)
-        {
-            var resultado = await _mediator.Send(_mapper.Map<BuscarVeiculoPorFiltroVendaQuery>(dto));
-            return _mapper.Map<IEnumerable<VeiculoVendaDTO>>(resultado);
-
-        }
-
         public Task<ResultadoOperacao> RegistrarVenda(RegistrarVendaDTO dto)
         {
             return _mediator.Send(_mapper.Map<RegistrarVendaCommand>(dto));

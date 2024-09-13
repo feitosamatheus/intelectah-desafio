@@ -65,13 +65,6 @@ namespace ConcessionariaApp.MVC.Controllers
             return Json(resultadoRegistro);
         }
 
-        [HttpPost("BuscarVeiculoPorModeloFabricante")]
-        public async Task<IActionResult> BuscarVeiculoPorModeloFabricante([FromBody] FiltroVendaDTO dto)
-        {
-            var resultado = await _vendaService.BuscarVeiculoPorFiltro(dto);
-            return PartialView("Partial/_RelatorioVeiculo", resultado);
-        }
-
         [HttpGet("BuscarVeiculoPorModelo")]
         public async Task<IActionResult> BuscarVeiculoPorModelo([FromQuery] string modelo)
         {
