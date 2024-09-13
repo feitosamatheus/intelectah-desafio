@@ -3,6 +3,7 @@ using ConcessionariaApp.Domain.Common;
 using ConcessionariaApp.Domain.Entities;
 using ConcessionariaApp.Domain.Interfaces;
 using ConcessionariaApp.Domain.Interfaces.Repositories;
+using ConcessionariaApp.Domain.ValueObjects;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace ConcessionariaApp.Application.UseCases.Vendas.Commands.RegistrarVenda
                 if (veiculo.Preco < decimal.Parse(request.ValorVenda))
                     return ResultadoOperacao.Falha("O valor da venda não pode ser maior que o valor do veículo.");
 
-                var clienteExistente = await _clienteRepository.BuscarClientePorCpf(request.CPF);
+                var clienteExistente = await _clienteRepository.BuscarClientePorCpf(CPF.RemoverMascara(request.CPF));
                 Cliente clienteVenda;
                 if(clienteExistente is not null)
                 {

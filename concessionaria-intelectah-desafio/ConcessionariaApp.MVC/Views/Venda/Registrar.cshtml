@@ -23,7 +23,7 @@
                         </div>
                         <div class="mb-2 col-4 d-none" id="modelo-box">
                             <label asp-for="Modelo" class="form-label"></label>
-                            <input asp-for="Modelo" class="form-control" maxlength="100" required placeholder="Digite o modelo" />
+                            <input asp-for="Modelo" class="form-control" maxlength="100" placeholder="Digite o modelo" />
                             <span asp-validation-for="Modelo" class="text-danger"></span>
                         </div>
                         <div class="mb-2 col-4 d-none" id="fabricante-box">
@@ -129,60 +129,62 @@
         $('#TelefoneCliente').mask('(00) 00000-0000');
         $('#DataVenda').mask('00/00/0000');
         $('#ValorVenda').mask('000.000.000.000.000,00', { reverse: true });
-
+        
         $("#FiltroVeiculo").change(()=>{
+            exibeInputVeiculo()
+        })
+        
+        function exibeInputVeiculo() {
             modelo = $("#modelo-box");
             fabricante = $("#fabricante-box");
             veiculo = $("#veiculos-box");
             opcaoSelecionada = $("#FiltroVeiculo option:selected").val()
 
-            
-            if (opcaoSelecionada == "Modelo")
-            {
-                modelo.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+
+            if (opcaoSelecionada == "Modelo") {
+                modelo.removeClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-            else if(opcaoSelecionada == "Fabricante")
-            {
-                fabricante.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            else if (opcaoSelecionada == "Fabricante") {
+                fabricante.removeClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-            else
-            {
-                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            else {
+                fabricante.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                modelo.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                veiculo.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-        })
-        
+        }
+
+
         $("#FiltroConcessionaria").change(() => {
+            exibeInputConcessionaria();
+        })
+
+        function exibeInputConcessionaria() {
             nome = $("#nomeConcessionaria-box");
             localizacao = $("#localizacao-box");
             concessionaria = $("#concessionaria-box");
             opcaoSelecionada = $("#FiltroConcessionaria option:selected").val()
 
-            
-            if (opcaoSelecionada == "Localizacao")
-            {
-                localizacao.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                nome.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            if (opcaoSelecionada == "Localizacao") {
+                localizacao.removeClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                nome.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-            else if(opcaoSelecionada == "Nome")
-            {
-                nome.removeClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            else if (opcaoSelecionada == "Nome") {
+                nome.removeClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-            else
-            {
-                nome.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
-                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(500).animate({ opacity: 1 }, 500);
+            else {
+                nome.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                localizacao.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
+                concessionaria.addClass("d-none").hide().css('opacity', 0).slideDown(250).animate({ opacity: 1 }, 250);
             }
-        })
+        }
 
         $("#Modelo").change(() => {
             if ($("#Modelo").val() == "")
@@ -301,9 +303,6 @@
                 'DataVenda': $('#DataVenda').val(),
                 'ValorVenda': valor
             }
-            console.log(param)
-
-
 
             $.ajax({
                 url: '@Url.Action("RegistrarVenda", "Venda")',
@@ -321,6 +320,9 @@
                 console.log(response)
                 if (response.sucesso) {
                     MenssagemSucesso(`Venda registrada com sucesso. Protocolo ${response.menssagem}`)
+                    $('#form')[0].reset();
+                    exibeInputConcessionaria()
+                    exibeInputVeiculo();
                     RemoverLoading()
                 } else {
                     RemoverLoading()

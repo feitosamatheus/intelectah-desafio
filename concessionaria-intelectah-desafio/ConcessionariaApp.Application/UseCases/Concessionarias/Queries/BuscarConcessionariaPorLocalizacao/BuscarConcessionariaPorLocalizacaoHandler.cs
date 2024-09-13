@@ -32,7 +32,7 @@ namespace ConcessionariaApp.Application.UseCases.Concessionarias.Queries.BuscarC
             //}
 
             var concessionariaDb = await _concessionariaRepository.GetAllAsync(cancellationToken);
-            var filtroConcessionariaDb = concessionariaDb.Where(c => c.Endereco.EnderecoCompleto.Contains(request.Localizacao));
+            var filtroConcessionariaDb = concessionariaDb.Where(c => c.Endereco.EnderecoCompleto.ToUpper().Contains(request.Localizacao.ToUpper()));
             //await _cashingService.AtualizarListaCacheAynsc("Concessionarias", concessionariaDb);
 
             return filtroConcessionariaDb;

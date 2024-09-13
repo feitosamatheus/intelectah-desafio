@@ -9,7 +9,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
 
         private CPF(string numero)
         {
-            if (ValidarCpf(numero))
+            if (!ValidarCpf(numero))
                 throw new CpfInvalidoException();
             
             Numero = RemoverMascara(numero);
@@ -80,7 +80,7 @@ namespace ConcessionariaApp.Domain.ValueObjects
             return cpf.EndsWith(digito);
         }
 
-        public string RemoverMascara(string cpf)
+        public static string RemoverMascara(string cpf)
         {
             var cpfSemMascara = Regex.Replace(cpf, @"\D", "");
 

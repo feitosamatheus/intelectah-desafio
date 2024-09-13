@@ -32,7 +32,7 @@ namespace ConcessionariaApp.Application.UseCases.Veiculos.Queries.BuscarVeiculoP
             //}
 
             var veiculosDb = await _veiculoRepository.GetAllAsync(cancellationToken);
-            var filtroVeiculoDb = veiculosDb.Where(v => v.Modelo.Contains(request.modelo));
+            var filtroVeiculoDb = veiculosDb.Where(v => v.Modelo.ToUpper().Contains(request.modelo.ToUpper()));
             //await _cashingService.AtualizarListaCacheAynsc("Veiculos", veiculosDb);
            
             return filtroVeiculoDb;
