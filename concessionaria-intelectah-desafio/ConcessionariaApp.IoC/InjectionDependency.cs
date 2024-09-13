@@ -31,7 +31,6 @@ namespace ConcessionariaApp.IoC
         {
             services.AddHttpContextAccessor();
 
-
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IConcessionariaRepository, ConcessionariaRepository>();
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
@@ -46,6 +45,8 @@ namespace ConcessionariaApp.IoC
             services.AddScoped<IConcessionariaService, ConcessionariaService>();
             services.AddScoped<IVeiculoService, VeiculoService>();
             services.AddScoped<IVendaService, VendaService>();
+            services.AddScoped<ICommonService, CommonService>();
+            services.AddScoped<IRelatorioService, RelatorioService>();
 
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<IHashingService, HashingService>();

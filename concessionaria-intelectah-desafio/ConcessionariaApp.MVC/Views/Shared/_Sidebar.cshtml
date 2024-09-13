@@ -93,12 +93,22 @@
             </div>
         </authorize-role>
         <authorize-role roles="Administrador, Gerente">
-            <a class="col-sidebar" asp-area="" asp-controller="Home" asp-action="Index" data-page="relatorios">
+            <a class="col-sidebar" data-bs-toggle="collapse" href="#relatorioSubMenu" role="button" aria-expanded="false" aria-controls="relatorioSubMenu" title="Relatórios" data-page="Relatorio">
                 <span class="span-col-sidebar">
-                    <i class="fa-solid fa-database icon-col-sidebar"></i>
-                    <span class="desc-col-sidebar">Relatorios</span>
+                    <i class="fa-solid fa-server icon-col-sidebar" style="margin-left:2px;"></i>
+                    <span class="desc-col-sidebar">Relatórios</span>
                 </span>
             </a>
+            <div class="collapse" id="relatorioSubMenu">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a class="dropdown-item dropdowColapseCustom" asp-controller="Relatorio" asp-action="RelatorioVenda" title="Relatório vendas mensais" data-page="RelatorioVenda">
+                            <i class="fa-solid fa-list icon-col-sidebar iconDropdown"></i>
+                            <span class="descDropdowColapseCustom">Vendas mensais</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </authorize-role>
     </nav>
     

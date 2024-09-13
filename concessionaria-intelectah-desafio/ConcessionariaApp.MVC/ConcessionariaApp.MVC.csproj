@@ -11,4 +11,8 @@
     <ProjectReference Include="..\ConcessionariaApp.IoC\ConcessionariaApp.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Relatorio\Partial\" />
+  </ItemGroup>
+
 </Project>

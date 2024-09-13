@@ -25,3 +25,8 @@
     .validation-summary-errors li {
         list-style: none;
     }
+
+.btn-color-custom {
+    background-color: chocolate !important;
+    color: white;
+}

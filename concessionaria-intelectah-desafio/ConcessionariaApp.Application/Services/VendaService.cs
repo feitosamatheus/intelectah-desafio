@@ -2,7 +2,6 @@
 using ConcessionariaApp.Application.Dtos.Vendas;
 using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Application.UseCases.Vendas.Commands.RegistrarVenda;
-using ConcessionariaApp.Application.UseCases.Vendas.Queries.BuscarVeiculoPorFiltroVenda;
 using ConcessionariaApp.Domain.Common;
 using MediatR;
 using System;

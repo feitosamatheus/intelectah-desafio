@@ -1,0 +1,55 @@
+﻿@model ConcessionariaApp.Application.Dtos.Relatorios.FiltroRelatorioVendaDTO
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="text-start mb-2 p-1">Relatório mensal de vendas</h4>
+                    <button class="btn btn-primary" id="btn-ocultar-filtro" data-open="1" type="button" data-bs-toggle="collapse" data-bs-target=".collapseForm" aria-expanded="true" aria-controls="collapseForm">
+                        Ocultar
+                    </button>
+                </div>
+                <form id="form" class="collapseForm collapse show" asp-controller="Relatorio" asp-action="RelatorioVenda">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    <div class="row p-2 ">
+                        <div class="mb-2 col-3">
+                            <label asp-for="Ano" class="control-label"></label>
+                            @Html.DropDownList("Mes", (IEnumerable<SelectListItem>)ViewBag.MesesLista, new { @class = "form-control", id = "Mes" })
+                            <span asp-validation-for="Ano" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-3">
+                            <label asp-for="Mes" class="control-label"></label>
+                            @Html.DropDownList("Ano", (IEnumerable<SelectListItem>)ViewBag.AnosLista, new { @class = "form-control", id = "Ano" })
+                            <span asp-validation-for="Mes" class="text-danger"></span>
+                        </div>
+                        <div class="col-3 text-cemter mt-4">
+                            <button type="submit" class="btn btn-color-custom col-8 text-center ">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#btn-ocultar-filtro").click(() => {
+            var btn = $("#btn-ocultar-filtro");
+
+            if (btn.attr('data-open') == "1") {
+                btn.html("Expandir")
+                btn.attr('data-open', "0");
+            }
+            else {
+                btn.html("Ocultar")
+                btn.attr('data-open', "1");
+            }
+        });
+    
+    });
+</script>
