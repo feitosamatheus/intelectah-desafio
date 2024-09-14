@@ -33,8 +33,9 @@ namespace ConcessionariaApp.MVC.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> RelatorioVenda(FiltroRelatorioVendaDTO dto)
+        [HttpGet("BuscarRelatorioVenda")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BuscarRelatorioVenda([FromQuery] FiltroRelatorioVendaDTO dto)
         {
             
             return View();
