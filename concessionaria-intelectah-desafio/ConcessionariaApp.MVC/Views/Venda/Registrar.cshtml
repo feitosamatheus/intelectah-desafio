@@ -291,7 +291,7 @@
             $("#form").validate();
             e.preventDefault();
 
-            var valor = $('#ValorVenda').val().replace(/[^\w\s]|_/g, '')
+            var valor = $('#ValorVenda').val().replace(/\./g, '');
             valor = valor.replace(/\s+/g, '')
 
             param = {

@@ -45,222 +45,13 @@
         </div>
     </div>
 </div>
-<div class="container d-flex justify-content-center align-items-center mt-3">
-    <div class="col-md-12">
-        <div class="card shadow-sm">
-            <div class="card-body box-shadow-custom">
-                <div class="d-flex justify-content-between">
-                    <h5 class="text-start mb-2 p-1">Relatório analítico</h5>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <ul class="d-flex justify-content-end">
-                            <li class="me-5">Quantidade total: <b>100</b></li>
-                            <li>Total de vendas:<b> 2050,00</b></li>
-                        </ul>
-                    </div>
-                    <hr />
-                </div>
-                <div class="row p-3 border rounded">
-                    <div class="col-12 col-md-6">
-                        <div class="p-3 contener-delimitador">
-                            <h6 class="text-center mb-4">Vendas por veículo</h6>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Modelo</th>
-                                        <th scope="col">Quantidade</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex justify-content-center">
-                        <canvas id="myChart" width="150" height="100"></canvas>
-                    </div>
-                </div>
-                <div class="row p-3 mt-3  border rounded">
-                    <div class="col-12 col-md-6">
-                        <div class="p-3  contener-delimitador">
-                            <h6 class="text-center mb-4">Vendas por fabricante</h6>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Quantidade</th>
-                                        <th scope="col">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex justify-content-center">
-                        <canvas id="myCharts" width="400" height="200"></canvas>
-                    </div>
-                </div>
-                <div class="row p-3 mt-3 border rounded">
-                    <div class="col-12 text-center">
-                        <h5>Concessionárias</h5>
-                    </div>
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="relatorio-venda-mensal"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var ctxs = document.getElementById('myCharts').getContext('2d');
 
-        var myCharts = new Chart(ctxs, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false, 
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    });
+<script> 
     $(document).ready(function($) {
         $("#btn-ocultar-filtro").click(() => {
             var btn = $("#btn-ocultar-filtro");
@@ -283,16 +74,16 @@
             e.preventDefault();
 
             var parametro = {
-                'Mes' : $("#Mes option:selected").val(),
-                'Ano': $("#Ano option:selected").val()
+                'Mes': parseInt($("#Mes option:selected").val(), 10),
+                'Ano': parseInt($("#Ano option:selected").val(), 10)
             }
 
             $.ajax({
                 url: '@Url.Action("BuscarRelatorioVenda", "Relatorio")',
-                type: 'GET',
+                type: 'POST',
                 data: JSON.stringify(parametro),
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
+                dataType: "html",
                 headers: {
                     'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                 },
@@ -300,17 +91,8 @@
                     AdicionarLoading()
                 }
             }).done(function (response) {
-                console.log(response)
-                if (response.sucesso) {
-                    $('.summary-custom').empty();
-                    $('#Form')[0].reset();
-                    RemoverLoading()
-                    MenssagemSucesso(response.menssagem)
-                } else {
-                    updateValidationSummary(response.menssagem)
-                    RemoverLoading()
-                    MenssageAlerta(response.menssagem)
-                }
+                $(".relatorio-venda-mensal").html(response).hide().css('opacity', 0).slideDown(200).animate({ opacity: 1 }, 200);
+                RemoverLoading()
             }).fail(function (jqXHR, textStatus, msg) {
                 RemoverLoading()
                 MenssagemErro("Não foi possível prosseguir com a solicitação.");

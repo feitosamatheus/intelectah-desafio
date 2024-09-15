@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using ConcessionariaApp.Application.Dtos.Relatorios;
 using ConcessionariaApp.Application.Interfaces;
+using ConcessionariaApp.Application.UseCases.Concessionarias.Commands.CadastrarConcessionarias;
+using ConcessionariaApp.Application.UseCases.Relatorios.Queries.BuscarRelatorioVendaPorAnoMes;
+using ConcessionariaApp.Application.UseCases.Relatorios.Queries.GerarPdfRelatorioVenda;
 using MediatR;
 
 namespace ConcessionariaApp.Application.Services
@@ -18,6 +22,17 @@ namespace ConcessionariaApp.Application.Services
         {
             _mapper = mapper;
             _mediator = mediator;
+        }
+
+        public async Task<RelatorioVendaDTO> BuscarRelatorioVendaPorAnoMes(FiltroRelatorioVendaDTO dto)
+        {
+            return  await _mediator.Send(_mapper.Map<BuscarRelatorioVendaPorAnoMesQuery>(dto));
+
+        }
+
+        public async Task<byte[]> GerarPdfRelatorioVenda(GerarRelatorioVendaPdfDTO pdfRelatorio)
+        {
+            return await _mediator.Send(_mapper.Map<GerarRelatorioVendaPdfQuery>(pdfRelatorio));
         }
     }
 }

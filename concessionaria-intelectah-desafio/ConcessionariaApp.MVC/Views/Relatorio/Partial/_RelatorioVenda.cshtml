@@ -1,0 +1,250 @@
+﻿@model ConcessionariaApp.Application.Dtos.Relatorios.RelatorioVendaDTO
+
+<div>
+    <form asp-controller="Relatorio" asp-action="GerarPdfRelatorioVenda">
+        <input type="hidden" id="GraficoVeiculoImagem"/>
+    </form>
+    <button type="button" id="gerar-pdf">Gerar pdf</button>
+    <button type="button" id="gerar-pdf">Gerar Excel</button>
+</div>
+<div class="container container-relatorio d-flex justify-content-center align-items-center mt-3">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body box-shadow-custom">
+                <div class="d-flex justify-content-between">
+                    <h5 class="text-start mb-2 p-1">Relatório analítico</h5>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <ul class="d-flex justify-content-end">
+                            <li class="me-5">Quantidade total: <b>@Model.QtdVendas</b></li>
+                            <li>Total de vendas:<b> @Model.TotalVendas</b></li>
+                        </ul>
+                    </div>
+                    <hr />
+                </div>
+                <div class="row p-3 border rounded">
+                    <div class="col-12 col-md-6">
+                        <div class="p-3 contener-delimitador">
+                            <h6 class="text-center mb-4">Vendas por veículo</h6>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var veiculo in Model.RelatorioVeiculos)
+                                    {
+                                        <tr>
+                                            <td>@veiculo.Modelo</td>
+                                            <td>@veiculo.QtdVendas</td>
+                                            <td>@veiculo.TotalVenda</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        <canvas id="myChart" width="150" height="100"></canvas>
+                    </div>
+                </div>
+                <div class="row p-3 mt-3  border rounded">
+                    <div class="col-12 col-md-6">
+                        <div class="p-3  contener-delimitador">
+                            <h6 class="text-center mb-4">Vendas por fabricante</h6>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">Nome</th>
+                                        <th scope="col" class="text-center">Quantidade</th>
+                                        <th scope="col" class="text-center">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var fabricante in Model.RelatorioFabricantes)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@fabricante.Nome</td>
+                                            <td class="text-center">@fabricante.QtdVendas</td>
+                                            <td class="text-center">@fabricante.TotalVenda</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        <canvas id="myCharts" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="row p-3 mt-3 border rounded">
+                    <div class="col-12 text-center">
+                        <h5>Concessionárias</h5>
+                    </div>
+                    <div class="col-12">
+                        <div class="table-responsive-custom">
+                            <table class="table table-responsive">
+                                <thead style="background-color: black; ">
+                                    <tr>
+                                        <th scope="col" class="text-center">Nome</th>
+                                        <th scope="col" class="text-center">Veículo mais Vendido</th>
+                                        <th scope="col" class="text-center">Quantidade vendidas</th>
+                                        <th scope="col" class="text-center">Total vendido</th>
+                                        <th scope="col" class="text-center">Quantidade geral</th>
+                                        <th scope="col" class="text-center">Total geral</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var concessionaria in Model.RelatorioConcessionarias)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@concessionaria.Nome</td>
+                                            <td class="text-center">@concessionaria.VeiculoMaisVendido.Modelo</td>
+                                            <td class="text-center">@concessionaria.VeiculoMaisVendido.QtdVendas</td>
+                                            <td class="text-center">@concessionaria.VeiculoMaisVendido.TotalVenda</td>
+                                            <td class="text-center">@concessionaria.QtdVendas</td>
+                                            <td class="text-center">@concessionaria.TotalVenda</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        function gerarGraficos() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var ctxs = document.getElementById('myCharts').getContext('2d');
+            var dados = @Html.Raw(Json.Serialize(Model));
+            console.log(dados.relatorioVeiculos)
+
+            var myChartVeiculo = new Chart(ctxs, {
+                type: 'pie',
+                data: {
+                    labels: dados.relatorioFabricantes.map(d => d.nome),
+                    datasets: [{
+                        label: '# of Votes',
+                        data: dados.relatorioFabricantes.map(d => d.totalVenda),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var myChartFabricante = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: dados.relatorioVeiculos.map(d => d.modelo),
+                    datasets: [{
+                        label: '# of Votes',
+                        data: dados.relatorioVeiculos.map(d => d.totalVenda),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            return { myChartVeiculo, myChartFabricante };
+        }
+
+        var charts = gerarGraficos();
+        var myChartVeiculo = charts.myChartVeiculo;
+        var myChartFabricante = charts.myChartFabricante;
+
+        $("#gerar-pdf").click(() => {
+            var graficoVeiculoImagem = myChartVeiculo.toBase64Image();
+            var graficoFabricanteImagem = myChartFabricante.toBase64Image();
+            var htmlPage = $('.container-relatorio').html();
+           
+            var parametro = {
+                "GraficoVeiculoImagem" : graficoVeiculoImagem,
+                "GraficoFabricanteImagem": graficoFabricanteImagem,
+                "HtmlPage": htmlPage,
+            }
+
+            $.ajax({
+                url: '@Url.Action("GerarPdfRelatorioVenda", "Relatorio")',
+                type: 'POST',
+                data: JSON.stringify(parametro),
+                contentType: "application/json; charset=utf-8",
+                xhrFields: {
+                    responseType: 'blob' 
+                },
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                var link = document.createElement('a');
+                var url = window.URL.createObjectURL(response);
+                link.href = url;
+                link.download = 'document.pdf';
+                link.click();
+                window.URL.revokeObjectURL(url);
+
+                RemoverLoading()
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false;
+        })
+    })
+</script>

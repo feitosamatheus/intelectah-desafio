@@ -51,6 +51,7 @@ namespace ConcessionariaApp.IoC
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<ICashingService, CashingService>();
+            services.AddScoped<IGeradorPdfService, GeradorPdfService>();
 
             services.AddAutoMapper(typeof(DtoForEntityMapping));
             services.AddAutoMapper(typeof(EntityForDtoMapping));
