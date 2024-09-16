@@ -7,6 +7,7 @@ using AutoMapper;
 using ConcessionariaApp.Application.Dtos.Relatorios;
 using ConcessionariaApp.Application.UseCases.Relatorios.Queries.BuscarRelatorioVendaPorAnoMes;
 using ConcessionariaApp.Application.UseCases.Relatorios.Queries.GerarPdfRelatorioVenda;
+using ConcessionariaApp.Application.UseCases.Relatorios.Queries.GerarRelatorioVendaExcel;
 
 namespace ConcessionariaApp.Application.Mapping
 {
@@ -14,6 +15,7 @@ namespace ConcessionariaApp.Application.Mapping
     {
         public DtoForQuery() {
             CreateMap<FiltroRelatorioVendaDTO,BuscarRelatorioVendaPorAnoMesQuery>();       
+            CreateMap<FiltroRelatorioVendaDTO, GerarRelatorioVendaExcelQuery>();       
             CreateMap<GerarRelatorioVendaPdfDTO, GerarRelatorioVendaPdfQuery>(); 
         }    
     }

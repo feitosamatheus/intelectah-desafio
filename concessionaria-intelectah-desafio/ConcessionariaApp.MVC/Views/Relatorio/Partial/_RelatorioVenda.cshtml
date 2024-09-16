@@ -5,7 +5,7 @@
         <input type="hidden" id="GraficoVeiculoImagem"/>
     </form>
     <button type="button" id="gerar-pdf">Gerar pdf</button>
-    <button type="button" id="gerar-pdf">Gerar Excel</button>
+    <button type="button" id="gerar-excel">Gerar Excel</button>
 </div>
 <div class="container container-relatorio d-flex justify-content-center align-items-center mt-3">
     <div class="col-md-12">
@@ -236,6 +236,40 @@
                 var url = window.URL.createObjectURL(response);
                 link.href = url;
                 link.download = 'document.pdf';
+                link.click();
+                window.URL.revokeObjectURL(url);
+
+                RemoverLoading()
+            }).fail(function (jqXHR, textStatus, msg) {
+                RemoverLoading()
+                MenssagemErro("Não foi possível prosseguir com a solicitação.");
+            });
+            return false;
+        })
+    
+        $("#gerar-excel").click(() => {
+            var parametro = {
+                'Mes': parseInt($("#Mes option:selected").val(), 10),
+                'Ano': parseInt($("#Ano option:selected").val(), 10)
+            }
+
+            $.ajax({
+            url: '@Url.Action("GerarExcelRelatorioVenda", "Relatorio")',
+                type: 'POST',
+                data: JSON.stringify(parametro),
+                contentType: "application/json; charset=utf-8",
+                xhrFields: {
+                    responseType: 'blob' 
+                },
+                beforeSend: () => {
+                    AdicionarLoading()
+                }
+            }).done(function (response) {
+                console.log(response)
+                var link = document.createElement('a');
+                var url = window.URL.createObjectURL(response);
+                link.href = url;
+                link.download = 'document.xlsx';
                 link.click();
                 window.URL.revokeObjectURL(url);
 

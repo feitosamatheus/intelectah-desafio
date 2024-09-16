@@ -11,6 +11,7 @@ namespace ConcessionariaApp.Application.Interfaces
     public interface IRelatorioService
     {
         Task<RelatorioVendaDTO> BuscarRelatorioVendaPorAnoMes(FiltroRelatorioVendaDTO dto);
+        Task<byte[]> GerarExcelRelatorioVenda(FiltroRelatorioVendaDTO dto);
         Task<byte[]> GerarPdfRelatorioVenda(GerarRelatorioVendaPdfDTO pdfRelatorio);
     }
 }

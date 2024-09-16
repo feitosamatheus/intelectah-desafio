@@ -2,6 +2,7 @@ using ConcessionariaApp.Application.Interfaces;
 using ConcessionariaApp.Infrastructure.Services;
 using ConcessionariaApp.IoC;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using OfficeOpenXml;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddHttpClient<ICepService, CepService>();
-
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options =>

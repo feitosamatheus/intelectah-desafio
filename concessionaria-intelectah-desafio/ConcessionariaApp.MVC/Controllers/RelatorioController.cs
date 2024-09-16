@@ -49,9 +49,16 @@ namespace ConcessionariaApp.MVC.Controllers
 
             pdfRelatorio.HtmlPage = corpoHtmlInicio + pdfRelatorio.HtmlPage + corpoHtmlFim;
 
-            //pdfRelatorio.HtmlPage = style + pdfRelatorio.HtmlPage;
             byte[] file = await _relatorioService.GerarPdfRelatorioVenda(pdfRelatorio);
             return File(file, "application/pdf", "document.pdf");
+        }
+
+        [HttpPost("GerarExcelRelatorioVenda")]
+        public async Task<IActionResult> GerarExcelRelatorioVenda([FromBody] FiltroRelatorioVendaDTO dto)
+        {
+            byte[] arquivoExcel = await _relatorioService.GerarExcelRelatorioVenda(dto);
+
+            return File(arquivoExcel, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "teste.xlsx");
         }
     }
 }

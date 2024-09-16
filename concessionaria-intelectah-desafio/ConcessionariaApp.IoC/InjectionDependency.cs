@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ConcessionariaApp.Application.Services;
 using ConcessionariaApp.Application.Mapping;
+using OfficeOpenXml;
 
 namespace ConcessionariaApp.IoC
 {
@@ -23,6 +24,7 @@ namespace ConcessionariaApp.IoC
         {
             services.AddRedisConfiguration(configuration);
             services.AddDatabaseConfiguration(configuration);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             return services;
         }
